@@ -1,0 +1,141 @@
+/* ==========================================================================
+   Flat List Carousel — snap-x, peek effect, masked hover scale
+   ========================================================================== */
+
+.carousel-wrap {
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 8px 24px 28px;
+  margin: 0 -24px;
+  scroll-padding-left: 24px;
+}
+
+@media (max-width: 640px) {
+  .carousel-track { padding: 8px 20px 24px; margin: 0 -20px; scroll-padding-left: 20px; }
+}
+
+.carousel-item {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  width: 320px;
+}
+@media (max-width: 640px) {
+  .carousel-item { width: 78vw; max-width: 320px; }
+}
+
+/* Peek: last item gets trailing margin so next-card edge is visible */
+.carousel-track::after {
+  content: "";
+  flex: 0 0 1px;
+}
+
+/* Masked hover container: overflow-hidden parent, scale-110 image/content on hover */
+.hover-mask {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  cursor: pointer;
+}
+
+.hover-mask .hover-scale-target {
+  transition: transform var(--dur-med) var(--ease-out);
+  transform: scale(1);
+}
+.hover-mask:hover .hover-scale-target {
+  transform: scale(1.1);
+}
+.hover-mask:active .hover-scale-target {
+  transform: scale(0.98);
+  transition-duration: 120ms;
+}
+
+/* Guide category card */
+.guide-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 26px;
+  border-radius: var(--r-lg);
+  transition: transform var(--dur-med) var(--ease-spring),
+              box-shadow var(--dur-med) var(--ease-out),
+              border-color var(--dur-med) var(--ease-out);
+}
+.guide-card:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 20px 48px color-mix(in srgb, var(--accent, var(--blue)) 18%, transparent),
+              0 2px 8px rgba(0,0,0,0.06);
+  border-color: color-mix(in srgb, var(--accent, var(--blue)) 35%, var(--glass-border));
+}
+.guide-card:active { transform: translateY(-2px) scale(0.98); }
+
+.guide-card__icon {
+  margin-bottom: 20px;
+}
+
+.guide-card__title {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+
+.guide-card__desc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  flex: 1;
+}
+
+.guide-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent, var(--blue));
+}
+.guide-card__meta svg {
+  width: 15px; height: 15px;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.guide-card:hover .guide-card__meta svg {
+  transform: translateX(3px);
+}
+
+/* Scroll affordance arrows */
+.carousel-nav {
+  display: flex;
+  gap: 10px;
+}
+.carousel-nav-btn {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-spring), opacity var(--dur-fast);
+  color: var(--ink);
+}
+.carousel-nav-btn:hover { transform: scale(1.08); }
+.carousel-nav-btn:active { transform: scale(0.93); }
+.carousel-nav-btn:disabled { opacity: 0.35; cursor: default; pointer-events: none; }
+.carousel-nav-btn svg { width: 20px; height: 20px; }
+
+/* Sub-topic pill list (for health/settings 2-level screens) */
+.topic-pill {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--r-md);
+  transition: background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-spring);
+  cursor: pointer;
+}
+.topic-pill:hover { background: color-mix(in srgb, var(--accent, var(--blue)) 8%, transparent); }
+.topic-pill:active { transform: scale(0.98); }

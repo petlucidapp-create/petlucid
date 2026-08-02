@@ -1,0 +1,103 @@
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.footer {
+  padding: 64px 0 40px;
+  border-top: 1px solid var(--hairline);
+  margin-top: 40px;
+}
+
+.footer__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.footer__brand img { width: 36px; height: 36px; border-radius: 10px; }
+.footer__brand-name { font-weight: 700; font-size: 16px; letter-spacing: -0.01em; }
+.footer__brand-tag { font-size: 12.5px; color: var(--ink-faint); }
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--hairline);
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+
+.footer__links {
+  display: flex;
+  gap: 20px;
+}
+.footer__links a { transition: color var(--dur-fast); }
+.footer__links a:hover { color: var(--ink); }
+
+/* Nav category quick-jump (used in hero secondary nav on desktop) */
+.pill-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.pill-nav__item {
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+}
+.pill-nav__item:hover {
+  color: var(--ink);
+  background: var(--glass-bg-strong);
+  transform: translateY(-1px);
+}
+
+/* Placeholder-data marker (dev note, visually subtle) */
+.data-note {
+  font-size: 11px;
+  color: var(--ink-faint);
+  text-align: center;
+  margin-top: 8px;
+  opacity: 0.6;
+}
+
+/* Back to top */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 90;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity var(--dur-fast), transform var(--dur-fast) var(--ease-spring), visibility var(--dur-fast);
+  cursor: pointer;
+  color: var(--ink);
+}
+.back-to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.back-to-top:hover { transform: translateY(-3px); }
+.back-to-top svg { width: 18px; height: 18px; }
+
+@media (max-width: 640px) {
+  .back-to-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
+}

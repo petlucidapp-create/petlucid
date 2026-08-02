@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0;
+  color: var(--ink);
+}
+
+.display-1 {
+  font-size: clamp(40px, 7vw, 80px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+
+.display-2 {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+}
+
+.title-lg {
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.title-md {
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+}
+
+p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.body-lg {
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.body-md {
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.caption {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+
+/* -------------------------------------------------------------------------
+   Text Color Scrubbing
+   "Yazıyı ışıkla yıkamak" — metin, scroll ilerledikçe soluk gri tondan
+   tam kontrast/aksan tona geçiş yapar. Her karakter/kelime bir <span>'e
+   sarılır ve --reveal (0→1) CSS custom property'sine göre renk interpolasyonu
+   background-clip: text ile linear-gradient üzerinden yapılır.
+   JS: her span'in viewport'a göre ilerleme oranını --reveal olarak set eder.
+   ========================================================================== */
+
+.scrub-text {
+  display: inline;
+}
+
+.scrub-word {
+  display: inline-block;
+  white-space: pre;
+  background-image: linear-gradient(
+    to right,
+    var(--ink) 50%,
+    var(--scrub-dim, #c4c4c8) 50%
+  );
+  background-size: 220% 100%;
+  background-position: calc(100% - var(--reveal, 0) * 100%) 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: background-position var(--dur-fast) linear;
+  will-change: background-position;
+}
+
+html.dark .scrub-word {
+  --scrub-dim: #4a4a4e;
+}
+
+/* Heading variant: scrub from muted to accent color */
+.scrub-word--accent {
+  background-image: linear-gradient(
+    to right,
+    var(--accent, var(--blue)) 50%,
+    var(--scrub-dim, #c4c4c8) 50%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrub-word {
+    background-position: 0 0 !important;
+    color: var(--ink) !important;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+  }
+}
