@@ -54,6 +54,35 @@ p {
   font-size: 15.5px;
   line-height: 1.65;
   color: var(--ink-soft);
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+}
+
+/* -------------------------------------------------------------------------
+   Metin hizalama tutarlılığı (Madde 8)
+   Başlıklar (h1-h4, .display-*, .title-*, .caption) dokunulmadan kalır.
+   Serbest akan gövde/açıklama metinleri iki yana yaslanır (justify) ve
+   kendi bloklarını düzgünce doldurur. Kısa, tek/iki satırlık altyazılar
+   (.section-head içindeki .body-lg gibi) merkezi kalmaya devam eder —
+   çünkü justify tek/iki satırlık kısa metinlerde tuhaf boşluklara yol açar.
+   ========================================================================== */
+
+.flow-step__body,
+.guide-card__desc,
+.mock-empty__sub {
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+}
+
+/* Hero altyazısı, kılavuz kataloğu altyazısı, ekran bölümü giriş metni gibi
+   .section-head içindeki kısa açıklamalar merkezi kalır. */
+.section-head .body-lg,
+.section-head .body-md {
+  text-align: center;
+  text-align-last: center;
+  hyphens: none;
 }
 
 .caption {
