@@ -74,6 +74,28 @@
 }
 .guide-card:active { transform: translateY(-2px) scale(0.98); }
 
+/* Parallax glow — kartın KENDİSİ değil, arkasındaki blur'lu ışık katmanı
+   scroll ile kayar (JS: scrollfx.js updateCardParallax). Koyu temada kart
+   zemini (--glass-bg) sabit/okunur kalır, sadece arkadaki glow hareket
+   ederek derinlik hissi verir — kartın titremesi/okunabilirlik kaybı yok. */
+.guide-card__glow {
+  position: absolute;
+  inset: -10%;
+  z-index: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 30% 20%,
+    color-mix(in srgb, var(--accent, var(--blue)) 32%, transparent), transparent 65%);
+  filter: blur(26px);
+  opacity: 0.55;
+  transform: translateY(calc(var(--pl-card-y, 0) * 1px));
+  will-change: transform;
+  pointer-events: none;
+  transition: opacity var(--dur-med) var(--ease-out);
+}
+.guide-card:hover .guide-card__glow { opacity: 0.85; }
+html.dark .guide-card__glow { opacity: 0.4; }
+html.dark .guide-card:hover .guide-card__glow { opacity: 0.65; }
+
 .guide-card__icon {
   margin-bottom: 20px;
 }
@@ -216,4 +238,65 @@
 
 .guide-back--topic {
   margin-bottom: 20px;
+}
+
+/* -------------------------------------------------------------------------
+   Mobil Kılavuz Şeridi (Madde 2) — "Kılavuzlara dön" linki yerine, mobilde
+   tüm kılavuzların ikon+başlığını gösteren yatay kayan bir şerit. Masaüstünde
+   tamamen gizli (orada zaten .guide-back yeterli ve sticky mock geniş yer
+   kaplıyor); mobilde .guide-back gizlenir, bu şerit onun yerini alır.
+   ------------------------------------------------------------------------- */
+.guide-strip {
+  display: none;
+}
+@media (max-width: 780px) {
+  .guide-back { display: none; }
+  .guide-strip {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding: 4px 20px 18px;
+    margin: 0 -20px 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .guide-strip::-webkit-scrollbar { display: none; }
+}
+
+.guide-strip__item {
+  all: unset;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px 9px 9px;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-spring);
+  -webkit-tap-highlight-color: transparent;
+}
+.guide-strip__item:active { transform: scale(0.96); }
+.guide-strip__item .icon-badge {
+  width: 26px; height: 26px;
+  border-radius: 9px;
+  flex-shrink: 0;
+}
+.guide-strip__item .icon-badge svg { width: 15px; height: 15px; }
+
+.guide-strip__item.is-current {
+  background: color-mix(in srgb, var(--accent, var(--blue)) 14%, var(--glass-bg));
+  border-color: color-mix(in srgb, var(--accent, var(--blue)) 40%, var(--glass-border));
+  color: var(--ink);
 }
