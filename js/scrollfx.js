@@ -18,18 +18,19 @@
   // -------------------------------------------------------------------
   // Katmanlı Hero Scroll Efekti (Madde 3)
   // -------------------------------------------------------------------
-  // Aşağı kaydırıldıkça kayboluş sırası: icon -> subtitle -> badges ->
-  // keywords -> title (title en sona bırakılır, "sabit kalan slogan"
-  // hissi için). Her katmanın kendi [start, end] penceresi var; pencere
-  // içinde blur + opacity + hafif translateY uygulanır, pencere dışında
-  // tam nettir. Title'ın penceresi en sonda olduğu için diğerleri
-  // kaybolana kadar o sabit ve net kalır.
+  // Aşağı kaydırıldıkça kayboluş sırası: icon -> badges -> keywords ->
+  // subtitle -> title (title en sona bırakılır, "sabit kalan slogan"
+  // hissi için; subtitle de sloganın hemen altında uzunca bir süre sabit
+  // kalıp store rozetleri ve anahtar kelimeler kaybolduktan SONRA, title'dan
+  // hemen önce kaybolur). Her katmanın kendi [start, end] penceresi var;
+  // pencere içinde blur + opacity + hafif translateY uygulanır, pencere
+  // dışında tam nettir.
   const HERO_LAYER_WINDOWS = {
-    icon:     { start: 0.00, end: 0.22 },
-    subtitle: { start: 0.16, end: 0.40 },
-    badges:   { start: 0.34, end: 0.58 },
-    keywords: { start: 0.52, end: 0.76 },
-    title:    { start: 0.70, end: 1.00 },
+    icon:     { start: 0.00, end: 0.20 },
+    badges:   { start: 0.16, end: 0.38 },
+    keywords: { start: 0.34, end: 0.56 },
+    subtitle: { start: 0.62, end: 0.84 },
+    title:    { start: 0.80, end: 1.00 },
   };
   const HERO_MAX_BLUR_PX = 10;
   const HERO_MAX_RISE_PX = 22; // yukarı doğru kayarak kaybolma mesafesi
