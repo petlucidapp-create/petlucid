@@ -81,7 +81,6 @@
     window.PLRender.renderAll();
     window.requestAnimationFrame(() => {
       window.scrollTo(0, scrollY);
-      window.PLScrollFX.collectStepGroups();
       window.PLScrollFX.refreshRevealObserver();
       window.PLScrollFX.onScroll();
       bindSmoothScroll();
