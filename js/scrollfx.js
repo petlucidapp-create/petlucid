@@ -73,30 +73,6 @@
   }
 
   // -------------------------------------------------------------------
-  // Kılavuz kartları — Parallax Glow (Madde: "parallax kılavuz menüsü
-  // kartlarına"). Kartın kendisi hareket etmiyor (koyu temada titreme
-  // olmasın diye); sadece arkasındaki .guide-card__glow katmanı, kartın
-  // viewport'taki konumuna göre hafifçe yukarı/aşağı kayıyor — max ±14px.
-  // Kart listesi dil değişiminde yeniden oluşturulduğu için elementler
-  // her onScroll'da canlı sorgulanır (cache yerine querySelectorAll ucuz).
-  // -------------------------------------------------------------------
-  const CARD_PARALLAX_MAX_PX = 14;
-
-  function updateCardParallax() {
-    const glows = document.querySelectorAll('.guide-card__glow');
-    if (!glows.length) return;
-    const vh = window.innerHeight || 1;
-    glows.forEach((glow) => {
-      const card = glow.parentElement;
-      const rect = card.getBoundingClientRect();
-      // 0 = kart viewport ortasında, -1/+1 = üst/alt kenara yakın
-      const centerOffset = (rect.top + rect.height / 2 - vh / 2) / vh;
-      const y = Math.max(Math.min(centerOffset, 1), -1) * CARD_PARALLAX_MAX_PX;
-      glow.style.setProperty('--pl-card-y', String(y));
-    });
-  }
-
-  // -------------------------------------------------------------------
   // Mobil Mock Carousel — Coverflow (Madde 3) — seçili mock öne/büyük,
   // yanlardakiler arkada/küçük. Her track'in KENDİ scroll event'i dinlenir
   // (yatay iç scroll, sayfa scroll'undan bağımsız); her slaytın track
@@ -187,7 +163,6 @@
     requestAnimationFrame(() => {
       updateHeroBlur();
       updateChrome();
-      updateCardParallax();
       ticking = false;
     });
   }

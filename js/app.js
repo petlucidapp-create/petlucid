@@ -215,6 +215,28 @@
   }
 
   // -------------------------------------------------------------------
+  // Kılavuz kartları — basılı tutma parıltısı (Madde 2). :active CSS
+  // pseudo-class'ı touch cihazlarda scroll ile karışınca güvenilir
+  // tetiklenmeyebiliyor; bu yüzden pointer olaylarıyla .is-pressed class'ı
+  // da ekleniyor. Kartlar dinamik render edildiği için (dil değişimi,
+  // guide detayları) event delegation kullanılıyor — tek kez bağlanır,
+  // yeniden render sonrası tekrar bağlamaya gerek kalmaz.
+  // -------------------------------------------------------------------
+  function initCardPressGlow() {
+    const press = (target) => {
+      const card = target.closest('.guide-card');
+      if (card) card.classList.add('is-pressed');
+    };
+    const release = () => {
+      document.querySelectorAll('.guide-card.is-pressed').forEach((c) => c.classList.remove('is-pressed'));
+    };
+    document.addEventListener('pointerdown', (e) => press(e.target));
+    document.addEventListener('pointerup', release);
+    document.addEventListener('pointercancel', release);
+    document.addEventListener('pointerleave', release, true);
+  }
+
+  // -------------------------------------------------------------------
   // Guide carousel — masaüstü ok navigasyonu (Apple.com tarzı)
   // -------------------------------------------------------------------
   function initCarouselNav() {
@@ -269,6 +291,7 @@
     window.PLRender.renderAll();
     bindGuideNavigation();
     initCarouselNav();
+    initCardPressGlow();
 
     window.PLScrollFX.init();
   }
