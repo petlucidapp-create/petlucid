@@ -187,34 +187,50 @@
     fillMockFrame(inner);
     inner.dataset.currentFrame = steps[0].frameId;
 
-    // Accordion davranışı: bir adıma tıklanınca sadece o adım açılır,
-    // diğerleri kapanır; mock ekran tıklanan adıma crossfade eder.
+    // Accordion davranışı: her adım tamamen bağımsız bir aç/kapa (toggle)
+    // mekanizmasına sahiptir. Bir adıma tıklanınca sadece o adımın kendi
+    // durumu değişir — diğer adımlar etkilenmez, aynı anda birden fazla
+    // adım açık kalabilir. Zaten açık bir adıma tekrar tıklanınca kapanır.
+    // Mock ekran, en son açılan (veya kapatılan) adıma göre güncellenir:
+    // bir adım açılınca o adıma crossfade eder; kapatılınca hâlâ açık
+    // kalan en yakın (üstteki) adıma geri döner; hiçbiri açık değilse
+    // mock ekran son gösterileni korur.
     const stepEls = Array.from(stepsCol.querySelectorAll('.flow-step'));
-    function openStep(targetEl, animate) {
-      stepEls.forEach((se) => {
-        const isTarget = se === targetEl;
-        se.classList.toggle('is-active', isTarget);
-        const head = se.querySelector('.flow-step__head');
-        head.setAttribute('aria-expanded', isTarget ? 'true' : 'false');
-      });
-      const frameId = targetEl.getAttribute('data-frame');
-      if (animate) {
-        crossfadeToFrame(inner, frameId);
-      } else {
-        inner.dataset.currentFrame = frameId;
+
+    function setStepState(targetEl, isOpen, animate) {
+      targetEl.classList.toggle('is-active', isOpen);
+      const head = targetEl.querySelector('.flow-step__head');
+      head.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (isOpen) {
+        const frameId = targetEl.getAttribute('data-frame');
+        if (animate) {
+          crossfadeToFrame(inner, frameId);
+        } else {
+          inner.dataset.currentFrame = frameId;
+        }
+      }
+    }
+
+    function fallbackToOpenStep() {
+      // Kapatılan adımdan sonra hâlâ açık kalan bir adım varsa mock ekranı
+      // ona göre günceller (en üstteki açık adım tercih edilir).
+      const stillOpen = stepEls.find((se) => se.classList.contains('is-active'));
+      if (stillOpen) {
+        crossfadeToFrame(inner, stillOpen.getAttribute('data-frame'));
       }
     }
 
     stepEls.forEach((se) => {
       const head = se.querySelector('.flow-step__head');
       head.addEventListener('click', () => {
-        if (se.classList.contains('is-active')) return; // zaten açık, kapatma yok — hep bir tanesi açık kalır
-        openStep(se, true);
+        const isCurrentlyOpen = se.classList.contains('is-active');
+        setStepState(se, !isCurrentlyOpen, true);
+        if (isCurrentlyOpen) fallbackToOpenStep();
       });
     });
 
-    // İlk adım varsayılan olarak açık
-    openStep(stepEls[0], false);
+    // İlk adım varsayılan olarak açık, diğerleri kapalı
+    stepEls.forEach((se, idx) => setStepState(se, idx === 0, false));
 
     return { mockCol, stepsCol, inner };
   }
@@ -382,3 +398,4 @@
     buildMockFrameHTML,
   };
 })(window);
+                                                                   
