@@ -111,6 +111,18 @@
     premium: { tr: 'Premium Aktif', en: 'Premium Active' },
     buyNow: { tr: 'Ömür Boyu Satın Al', en: 'Buy Lifetime' },
     restorePurchase: { tr: 'Satın alımları geri yükle', en: 'Restore purchases' },
+    addPet: { tr: 'Evcil Hayvan Ekle', en: 'Add Pet' },
+    petTypeBreedAge: { tr: 'Kedi · Tekir · 2 yaş', en: 'Cat · Tabby · 2 yrs' },
+    petSpecies_cat: { tr: 'Kedi', en: 'Cat' },
+    petSpecies_dog: { tr: 'Köpek', en: 'Dog' },
+    petSpecies_bird: { tr: 'Kuş', en: 'Bird' },
+    assignedVet: { tr: 'ATANMIŞ VETERİNER', en: 'ASSIGNED VET' },
+    prescriptions: { tr: 'Reçeteler', en: 'Prescriptions' },
+    genderLabel: { tr: 'CİNSİYET', en: 'GENDER' },
+    birthDateLabel: { tr: 'DOĞUM TARİHİ', en: 'BIRTH DATE' },
+    birthDate: { tr: '27.01.2026', en: 'Jan 27, 2026' },
+    farewellTitle: { tr: 'Sebep (isteğe bağlı)', en: 'Reason (optional)' },
+    farewellsSection: { tr: 'Vedalar', en: 'Farewells' },
   };
 
   // Ad/soyad gerektiren placeholder key'leri -> mocknames.js'teki tür/rol
@@ -122,6 +134,7 @@
     petNameReptile: 'reptile', petNamePoultry: 'poultry', petNameHorse: 'horse',
     petNameCow: 'cow', petNameGoatSheep: 'goat_sheep',
     vetName: 'vet', ownerName: 'owner',
+    petName: 'cat', petName_cat: 'cat', petName_dog: 'dog', petName_bird: 'bird',
   };
 
   function phText(key) {
@@ -412,4 +425,5 @@
     buildMockFrameHTML,
   };
 })(window);
+                                                                   
 
