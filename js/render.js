@@ -182,6 +182,20 @@
         <div class="mock-screen" id="mockScreen-${screen}">
           <div class="mock-screen__inner" id="mockInner-${screen}"></div>
         </div>
+        <div class="mock-carousel" id="mockCarousel-${screen}">
+          <div class="mock-carousel__track">
+            ${steps.map((step, idx) => `
+              <div class="mock-carousel__slide" data-slide-idx="${idx}">
+                <div class="mock-screen">
+                  <div class="mock-screen__inner"></div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          <div class="mock-carousel__dots">
+            ${steps.map((_, idx) => `<span class="mock-carousel__dot" data-dot-idx="${idx}"></span>`).join('')}
+          </div>
+        </div>
       </div>
     `);
 
@@ -208,11 +222,28 @@
     wrapperEl.appendChild(mockCol);
     wrapperEl.appendChild(stepsCol);
 
-    // İlk frame'i render et
+    // ---- Masaüstü: sabit sticky mock, tıklamayla crossfade ----
     const inner = mockCol.querySelector(`#mockInner-${screen}`);
     inner.innerHTML = buildMockFrameHTML(steps[0].frameId);
     fillMockFrame(inner);
     inner.dataset.currentFrame = steps[0].frameId;
+
+    // ---- Mobil: her adımın kendi görseli, yatay kayan şerit + nokta göstergesi ----
+    const carouselEl = mockCol.querySelector(`#mockCarousel-${screen}`);
+    const track = carouselEl.querySelector('.mock-carousel__track');
+    const slideEls = Array.from(carouselEl.querySelectorAll('.mock-carousel__slide'));
+    const dotEls = Array.from(carouselEl.querySelectorAll('.mock-carousel__dot'));
+    slideEls.forEach((slideEl, idx) => {
+      const slideInner = slideEl.querySelector('.mock-screen__inner');
+      slideInner.innerHTML = buildMockFrameHTML(steps[idx].frameId);
+      fillMockFrame(slideInner);
+    });
+
+    // Tek adımlı akışlarda (nadir) carousel'i tek slaytla sade bırak; nokta
+    // göstergesini de tek nokta yerine tamamen gizle.
+    if (steps.length <= 1) {
+      carouselEl.querySelector('.mock-carousel__dots').style.display = 'none';
+    }
 
     // Accordion davranışı: her adım tamamen bağımsız bir aç/kapa (toggle)
     // mekanizmasına sahiptir. Bir adıma tıklanınca sadece o adımın kendi
@@ -223,18 +254,32 @@
     // kalan en yakın (üstteki) adıma geri döner; hiçbiri açık değilse
     // mock ekran son gösterileni korur.
     const stepEls = Array.from(stepsCol.querySelectorAll('.flow-step'));
+    let syncingFromCarousel = false; // carousel scroll -> accordion güncellerken tekrar scroll tetiklememek için
 
-    function setStepState(targetEl, isOpen, animate) {
+    function setActiveDot(idx) {
+      dotEls.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+    }
+
+    function scrollCarouselTo(idx) {
+      const target = slideEls[idx];
+      if (!target) return;
+      track.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
+    }
+
+    function setStepState(targetEl, isOpen, animate, fromCarousel) {
       targetEl.classList.toggle('is-active', isOpen);
       const head = targetEl.querySelector('.flow-step__head');
       head.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       if (isOpen) {
+        const idx = parseInt(targetEl.getAttribute('data-step-idx'), 10);
         const frameId = targetEl.getAttribute('data-frame');
         if (animate) {
           crossfadeToFrame(inner, frameId);
         } else {
           inner.dataset.currentFrame = frameId;
         }
+        setActiveDot(idx);
+        if (!fromCarousel) scrollCarouselTo(idx);
       }
     }
 
@@ -251,13 +296,36 @@
       const head = se.querySelector('.flow-step__head');
       head.addEventListener('click', () => {
         const isCurrentlyOpen = se.classList.contains('is-active');
-        setStepState(se, !isCurrentlyOpen, true);
+        setStepState(se, !isCurrentlyOpen, true, false);
         if (isCurrentlyOpen) fallbackToOpenStep();
       });
     });
 
     // İlk adım varsayılan olarak açık, diğerleri kapalı
-    stepEls.forEach((se, idx) => setStepState(se, idx === 0, false));
+    stepEls.forEach((se, idx) => setStepState(se, idx === 0, false, true));
+    // İlk yükte carousel'i başa konumla (smooth animasyon olmadan)
+    requestAnimationFrame(() => { track.scrollLeft = 0; });
+
+    // Carousel kaydırıldıkça: en görünür slaytı bul, ilgili adımı aç,
+    // diğerlerini kapat. IntersectionObserver track'in kendi scroll
+    // konteynerine göre çalışır.
+    if (steps.length > 1) {
+      const io = new IntersectionObserver((entries) => {
+        if (syncingFromCarousel) return;
+        let best = null;
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && (!best || entry.intersectionRatio > best.intersectionRatio)) {
+            best = entry;
+          }
+        });
+        if (!best) return;
+        const idx = parseInt(best.target.getAttribute('data-slide-idx'), 10);
+        syncingFromCarousel = true;
+        stepEls.forEach((se, i) => setStepState(se, i === idx, true, true));
+        syncingFromCarousel = false;
+      }, { root: track, threshold: [0.5, 0.6, 0.7, 0.8, 0.9, 1] });
+      slideEls.forEach((s) => io.observe(s));
+    }
 
     return { mockCol, stepsCol, inner };
   }
@@ -426,4 +494,3 @@
   };
 })(window);
                                                                    
-
