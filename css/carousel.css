@@ -149,3 +149,71 @@
 }
 .topic-pill:hover { background: color-mix(in srgb, var(--accent, var(--blue)) 8%, transparent); }
 .topic-pill:active { transform: scale(0.98); }
+
+/* -------------------------------------------------------------------------
+   Guide navigation visibility (Madde 6 & 6.1)
+   Kart tıklanınca sadece o guide-section görünür, katalog (carousel) gizlenir.
+   Topic-pill tıklanınca sadece o topic-flow-block görünür, topic listesi gizlenir.
+   Varsayılan durumda: katalog görünür, tüm guide-section'lar gizli;
+   her section içinde topic listesi görünür, tüm topic blokları gizli.
+   ------------------------------------------------------------------------- */
+#guideSection.is-hidden {
+  display: none;
+}
+
+#guideDetails.is-active {
+  padding-top: 88px;
+}
+@media (max-width: 780px) {
+  #guideDetails.is-active {
+    padding-top: 76px;
+  }
+}
+
+.guide-section {
+  display: none;
+}
+.guide-section.is-active {
+  display: block;
+}
+
+.topic-list-wrap {
+  display: none;
+}
+.topic-list-wrap.is-active {
+  display: block;
+}
+
+.topic-flow-block {
+  display: none;
+  margin-bottom: 32px;
+}
+.topic-flow-block.is-active {
+  display: block;
+}
+
+.guide-back {
+  all: unset;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  padding: 8px 10px 8px 6px;
+  margin-bottom: 24px;
+  border-radius: var(--r-sm, 8px);
+  transition: color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.guide-back:hover {
+  color: var(--accent, var(--blue));
+  background: color-mix(in srgb, var(--accent, var(--blue)) 8%, transparent);
+}
+.guide-back svg { flex: none; }
+
+.guide-back--topic {
+  margin-bottom: 20px;
+}
