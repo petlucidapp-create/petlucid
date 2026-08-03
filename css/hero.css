@@ -127,7 +127,20 @@
 .hero {
   position: relative;
   padding: 168px 0 80px;
+  /* NOT: overflow:hidden BURADA OLMAMALI — .hero__title gibi büyük
+     font-size'lı elemanların üst kısmını (özellikle Ö, İ gibi Türkçe
+     büyük harfleri) kırpıyordu, üstelik katmanlı scroll efektindeki
+     translateY hareketiyle birleşince kesilme daha da belirginleşiyordu.
+     Taşan tek eleman .hero__glow, o zaten kendi boyutunda blur'lu bir
+     dekor katmanı; onu kırpmak istiyorsak kendi wrapper'ında yapılır. */
+}
+
+.hero__glow-clip {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero__glow {
