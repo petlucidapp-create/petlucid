@@ -18,7 +18,7 @@
   // 21 dilin tamamı data/guides.json meta.langs listesiyle birebir eşleşir.
   const UI_STRINGS = {
     tr: {
-      heroTitle: 'Evcil dostunuz için<br/>her şey tek yerde.',
+      heroTitle: 'PetLucid: Size özel<br/>Çoklu Evcil Hayvan takip uygulaması.',
       heroSubtitle: 'PetLucid\'i nasıl kullanacağınızı adım adım keşfedin — hatırlatıcılardan sağlık kayıtlarına, veteriner takibinden yedeklemeye kadar.',
       scrollCue: 'Kaydır',
       storeSoon: 'Yakında',
@@ -34,7 +34,7 @@
       stepLabel: 'Adım',
     },
     en: {
-      heroTitle: 'Everything for your pet,<br/>in one place.',
+      heroTitle: 'PetLucid: Your personal<br/>multi-pet tracking app.',
       heroSubtitle: 'Discover how to use PetLucid step by step — from reminders to health records, vet tracking to backups.',
       scrollCue: 'Scroll',
       storeSoon: 'Coming soon',
@@ -50,7 +50,7 @@
       stepLabel: 'Step',
     },
     de: {
-      heroTitle: 'Alles für Ihr Haustier,<br/>an einem Ort.',
+      heroTitle: 'PetLucid: Ihre persönliche<br/>App zur Verwaltung mehrerer Haustiere.',
       heroSubtitle: 'Entdecken Sie Schritt für Schritt, wie PetLucid funktioniert — von Erinnerungen über Gesundheitsakten bis zu Backups.',
       scrollCue: 'Scrollen',
       storeSoon: 'Demnächst',
@@ -66,7 +66,7 @@
       stepLabel: 'Schritt',
     },
     fr: {
-      heroTitle: 'Tout pour votre animal,<br/>au même endroit.',
+      heroTitle: 'PetLucid : votre application<br/>personnelle de suivi multi-animaux.',
       heroSubtitle: 'Découvrez comment utiliser PetLucid étape par étape — des rappels aux dossiers de santé, du suivi vétérinaire aux sauvegardes.',
       scrollCue: 'Faire défiler',
       storeSoon: 'Bientôt disponible',
@@ -82,7 +82,7 @@
       stepLabel: 'Étape',
     },
     es: {
-      heroTitle: 'Todo para tu mascota,<br/>en un solo lugar.',
+      heroTitle: 'PetLucid: tu app personal<br/>de seguimiento multi-mascota.',
       heroSubtitle: 'Descubre cómo usar PetLucid paso a paso — desde recordatorios hasta historiales médicos, seguimiento veterinario y copias de seguridad.',
       scrollCue: 'Desplázate',
       storeSoon: 'Próximamente',
@@ -98,7 +98,7 @@
       stepLabel: 'Paso',
     },
     it: {
-      heroTitle: 'Tutto per il tuo animale,<br/>in un unico posto.',
+      heroTitle: 'PetLucid: la tua app personale<br/>per il monitoraggio multi-animale.',
       heroSubtitle: 'Scopri come usare PetLucid passo dopo passo — da promemoria e cartelle cliniche al monitoraggio veterinario e ai backup.',
       scrollCue: 'Scorri',
       storeSoon: 'Prossimamente',
@@ -114,7 +114,7 @@
       stepLabel: 'Passo',
     },
     pt: {
-      heroTitle: 'Tudo para o seu pet,<br/>em um só lugar.',
+      heroTitle: 'PetLucid: seu app pessoal<br/>de acompanhamento multi-pet.',
       heroSubtitle: 'Descubra como usar o PetLucid passo a passo — de lembretes a registros de saúde, acompanhamento veterinário e backups.',
       scrollCue: 'Deslize',
       storeSoon: 'Em breve',
@@ -130,7 +130,7 @@
       stepLabel: 'Passo',
     },
     nl: {
-      heroTitle: 'Alles voor je huisdier,<br/>op één plek.',
+      heroTitle: 'PetLucid: jouw persoonlijke<br/>app voor het volgen van meerdere huisdieren.',
       heroSubtitle: 'Ontdek stap voor stap hoe je PetLucid gebruikt — van herinneringen tot gezondheidsdossiers, van dierenartsbeheer tot back-ups.',
       scrollCue: 'Scrollen',
       storeSoon: 'Binnenkort',
@@ -146,7 +146,7 @@
       stepLabel: 'Stap',
     },
     ru: {
-      heroTitle: 'Всё для вашего питомца<br/>в одном месте.',
+      heroTitle: 'PetLucid — ваше личное приложение<br/>для учёта нескольких питомцев.',
       heroSubtitle: 'Узнайте, как пользоваться PetLucid шаг за шагом — от напоминаний до медицинских записей, учёта визитов к ветеринару и резервных копий.',
       scrollCue: 'Прокрутите',
       storeSoon: 'Скоро',
@@ -162,7 +162,7 @@
       stepLabel: 'Шаг',
     },
     ja: {
-      heroTitle: '大切なペットのために、<br/>すべてが一箇所に。',
+      heroTitle: 'PetLucid：あなた専用の<br/>複数ペット管理アプリ。',
       heroSubtitle: 'リマインダーから健康記録、動物病院管理、バックアップまで、PetLucidの使い方をステップごとにご紹介します。',
       scrollCue: 'スクロール',
       storeSoon: '近日公開',
@@ -178,7 +178,7 @@
       stepLabel: 'ステップ',
     },
     ko: {
-      heroTitle: '소중한 반려동물을 위한 모든 것,<br/>한 곳에서.',
+      heroTitle: 'PetLucid: 나만의<br/>다중 반려동물 관리 앱.',
       heroSubtitle: '알림부터 건강 기록, 동물병원 관리, 백업까지 PetLucid 사용법을 단계별로 알아보세요.',
       scrollCue: '스크롤',
       storeSoon: '출시 예정',
@@ -194,7 +194,7 @@
       stepLabel: '단계',
     },
     zh: {
-      heroTitle: '为你的宠物，<br/>一切尽在一处。',
+      heroTitle: 'PetLucid：您专属的<br/>多宠物追踪应用。',
       heroSubtitle: '逐步了解如何使用 PetLucid——从提醒事项到健康记录，从兽医管理到数据备份。',
       scrollCue: '滚动',
       storeSoon: '即将上线',
@@ -210,7 +210,7 @@
       stepLabel: '步骤',
     },
     ar: {
-      heroTitle: 'كل ما يحتاجه حيوانك الأليف،<br/>في مكان واحد.',
+      heroTitle: 'PetLucid: تطبيقك الشخصي<br/>لتتبع حيوانات أليفة متعددة.',
       heroSubtitle: 'اكتشف كيفية استخدام PetLucid خطوة بخطوة — من التذكيرات إلى السجلات الصحية، ومتابعة الطبيب البيطري إلى النسخ الاحتياطي.',
       scrollCue: 'مرر لأسفل',
       storeSoon: 'قريبًا',
@@ -226,7 +226,7 @@
       stepLabel: 'خطوة',
     },
     pl: {
-      heroTitle: 'Wszystko dla Twojego zwierzaka,<br/>w jednym miejscu.',
+      heroTitle: 'PetLucid: Twoja osobista aplikacja<br/>do śledzenia wielu zwierząt.',
       heroSubtitle: 'Poznaj krok po kroku, jak korzystać z PetLucid — od przypomnień, przez dokumentację zdrowotną, po wizyty u weterynarza i kopie zapasowe.',
       scrollCue: 'Przewiń',
       storeSoon: 'Wkrótce',
@@ -242,7 +242,7 @@
       stepLabel: 'Krok',
     },
     sv: {
-      heroTitle: 'Allt för ditt husdjur,<br/>på ett ställe.',
+      heroTitle: 'PetLucid: din personliga app<br/>för att hålla koll på flera husdjur.',
       heroSubtitle: 'Upptäck hur du använder PetLucid steg för steg — från påminnelser till hälsojournaler, veterinärhantering och säkerhetskopior.',
       scrollCue: 'Skrolla',
       storeSoon: 'Kommer snart',
@@ -258,7 +258,7 @@
       stepLabel: 'Steg',
     },
     no: {
-      heroTitle: 'Alt for kjæledyret ditt,<br/>på ett sted.',
+      heroTitle: 'PetLucid: din personlige app<br/>for oppfølging av flere kjæledyr.',
       heroSubtitle: 'Oppdag hvordan du bruker PetLucid steg for steg — fra påminnelser til helsejournaler, veterinæroppfølging og sikkerhetskopier.',
       scrollCue: 'Rull ned',
       storeSoon: 'Kommer snart',
@@ -274,7 +274,7 @@
       stepLabel: 'Steg',
     },
     da: {
-      heroTitle: 'Alt til dit kæledyr,<br/>ét sted.',
+      heroTitle: 'PetLucid: din personlige app<br/>til at holde styr på flere kæledyr.',
       heroSubtitle: 'Opdag, hvordan du bruger PetLucid trin for trin — fra påmindelser til sundhedsjournaler, dyrlægeopfølgning og sikkerhedskopier.',
       scrollCue: 'Rul ned',
       storeSoon: 'Kommer snart',
@@ -290,7 +290,7 @@
       stepLabel: 'Trin',
     },
     fi: {
-      heroTitle: 'Kaikki lemmikillesi,<br/>samassa paikassa.',
+      heroTitle: 'PetLucid: henkilökohtainen sovelluksesi<br/>useamman lemmikin seurantaan.',
       heroSubtitle: 'Tutustu PetLucidin käyttöön vaihe vaiheelta — muistutuksista terveystietoihin, eläinlääkäriseurantaan ja varmuuskopioihin.',
       scrollCue: 'Vieritä',
       storeSoon: 'Tulossa pian',
@@ -306,7 +306,7 @@
       stepLabel: 'Vaihe',
     },
     cs: {
-      heroTitle: 'Vše pro vašeho mazlíčka,<br/>na jednom místě.',
+      heroTitle: 'PetLucid: vaše osobní aplikace<br/>pro sledování více mazlíčků.',
       heroSubtitle: 'Objevte, jak používat PetLucid krok za krokem — od připomínek přes zdravotní záznamy až po sledování veterináře a zálohy.',
       scrollCue: 'Posunout',
       storeSoon: 'Již brzy',
@@ -322,7 +322,7 @@
       stepLabel: 'Krok',
     },
     hu: {
-      heroTitle: 'Minden a kedvencedért,<br/>egy helyen.',
+      heroTitle: 'PetLucid: személyes alkalmazásod<br/>több kedvenc nyomon követéséhez.',
       heroSubtitle: 'Fedezd fel lépésről lépésre, hogyan használd a PetLucidot — emlékeztetőktől az egészségügyi nyilvántartásokon át az állatorvosi követésig és a biztonsági mentésekig.',
       scrollCue: 'Görgetés',
       storeSoon: 'Hamarosan',
@@ -338,7 +338,7 @@
       stepLabel: 'Lépés',
     },
     ro: {
-      heroTitle: 'Totul pentru animalul tău de companie,<br/>într-un singur loc.',
+      heroTitle: 'PetLucid: aplicația ta personală<br/>pentru monitorizarea mai multor animale.',
       heroSubtitle: 'Descoperă cum să folosești PetLucid pas cu pas — de la mementouri la fișe medicale, urmărirea veterinarului și copii de rezervă.',
       scrollCue: 'Derulează',
       storeSoon: 'În curând',
