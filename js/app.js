@@ -82,6 +82,7 @@
     window.requestAnimationFrame(() => {
       window.PLScrollFX.refreshRevealObserver();
       window.PLScrollFX.onScroll();
+      window.PLScrollFX.refreshCoverflow();
       bindGuideNavigation();
       restoreGuideView();
     });
@@ -97,6 +98,19 @@
     root.querySelectorAll('.reveal:not(.is-visible)').forEach((elm) => elm.classList.add('is-visible'));
   }
 
+  // Sayfanın mutlak tepesine (window scrollTo top:0) değil, açılan bölümün
+  // KENDİ başına scroll eder — sabit header'ın altında kalmaması için
+  // header yüksekliği kadar pay bırakır. Önceki davranış her zaman en başa
+  // (hero'nun üstüne) atlıyordu, bu "otomatik sitenin en başına gidiyor"
+  // şikayetine sebep oluyordu.
+  function scrollToSectionTop(sectionEl) {
+    const header = document.getElementById('siteHeader');
+    const headerH = header ? header.getBoundingClientRect().height : 0;
+    const rect = sectionEl.getBoundingClientRect();
+    const targetY = window.scrollY + rect.top - headerH - 12;
+    window.scrollTo({ top: Math.max(targetY, 0), behavior: 'auto' });
+  }
+
   function showGuideSection(screen) {
     document.querySelectorAll('.guide-section').forEach((sec) => {
       sec.classList.toggle('is-active', sec.id === `guide-${screen}`);
@@ -105,9 +119,11 @@
     document.getElementById('guideDetails').classList.add('is-active');
     guideViewState.screen = screen;
     guideViewState.topic = null;
-    window.scrollTo({ top: 0, behavior: 'auto' });
     const activeSection = document.getElementById(`guide-${screen}`);
-    if (activeSection) revealNow(activeSection);
+    if (activeSection) {
+      revealNow(activeSection);
+      scrollToSectionTop(activeSection);
+    }
   }
 
   function showCatalog() {
@@ -130,8 +146,8 @@
     if (listWrap) listWrap.classList.remove('is-active');
     guideViewState.screen = screen;
     guideViewState.topic = topicId;
-    window.scrollTo({ top: 0, behavior: 'auto' });
     revealNow(sectionEl);
+    scrollToSectionTop(sectionEl);
   }
 
   function showTopicList(screen) {

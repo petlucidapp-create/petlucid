@@ -73,6 +73,80 @@
   }
 
   // -------------------------------------------------------------------
+  // Kılavuz kartları — Parallax Glow (Madde: "parallax kılavuz menüsü
+  // kartlarına"). Kartın kendisi hareket etmiyor (koyu temada titreme
+  // olmasın diye); sadece arkasındaki .guide-card__glow katmanı, kartın
+  // viewport'taki konumuna göre hafifçe yukarı/aşağı kayıyor — max ±14px.
+  // Kart listesi dil değişiminde yeniden oluşturulduğu için elementler
+  // her onScroll'da canlı sorgulanır (cache yerine querySelectorAll ucuz).
+  // -------------------------------------------------------------------
+  const CARD_PARALLAX_MAX_PX = 14;
+
+  function updateCardParallax() {
+    const glows = document.querySelectorAll('.guide-card__glow');
+    if (!glows.length) return;
+    const vh = window.innerHeight || 1;
+    glows.forEach((glow) => {
+      const card = glow.parentElement;
+      const rect = card.getBoundingClientRect();
+      // 0 = kart viewport ortasında, -1/+1 = üst/alt kenara yakın
+      const centerOffset = (rect.top + rect.height / 2 - vh / 2) / vh;
+      const y = Math.max(Math.min(centerOffset, 1), -1) * CARD_PARALLAX_MAX_PX;
+      glow.style.setProperty('--pl-card-y', String(y));
+    });
+  }
+
+  // -------------------------------------------------------------------
+  // Mobil Mock Carousel — Coverflow (Madde 3) — seçili mock öne/büyük,
+  // yanlardakiler arkada/küçük. Her track'in KENDİ scroll event'i dinlenir
+  // (yatay iç scroll, sayfa scroll'undan bağımsız); her slaytın track
+  // merkezine olan uzaklığı slayt genişliğine oranlanarak --pl-dist'e yazılır.
+  // -------------------------------------------------------------------
+  const coverflowTracks = new Set();
+
+  function updateCoverflowTrack(track) {
+    const trackRect = track.getBoundingClientRect();
+    const trackCenter = trackRect.left + trackRect.width / 2;
+    const slides = track.querySelectorAll('.mock-carousel__slide');
+    slides.forEach((slide) => {
+      const r = slide.getBoundingClientRect();
+      const slideCenter = r.left + r.width / 2;
+      const dist = Math.abs(slideCenter - trackCenter) / (r.width || 1);
+      slide.style.setProperty('--pl-dist', String(dist));
+      slide.style.setProperty('--pl-z', String(dist < 0.15 ? 10 : 5));
+    });
+  }
+
+  function registerCoverflowTrack(track) {
+    if (!track || coverflowTracks.has(track)) return;
+    coverflowTracks.add(track);
+    let localTicking = false;
+    const onTrackScroll = () => {
+      if (localTicking) return;
+      localTicking = true;
+      requestAnimationFrame(() => {
+        updateCoverflowTrack(track);
+        localTicking = false;
+      });
+    };
+    track.addEventListener('scroll', onTrackScroll, { passive: true });
+    updateCoverflowTrack(track);
+  }
+
+  function initCoverflow() {
+    document.querySelectorAll('.mock-carousel__track').forEach(registerCoverflowTrack);
+  }
+
+  function refreshCoverflow() {
+    // Dil değişimi / yeni guide section render sonrası yeni track'leri bağlar.
+    initCoverflow();
+  }
+
+  window.addEventListener('resize', () => {
+    coverflowTracks.forEach(updateCoverflowTrack);
+  });
+
+  // -------------------------------------------------------------------
   // Reveal on scroll (IntersectionObserver — daha performanslı)
   // -------------------------------------------------------------------
   function setupRevealObserver() {
@@ -113,6 +187,7 @@
     requestAnimationFrame(() => {
       updateHeroBlur();
       updateChrome();
+      updateCardParallax();
       ticking = false;
     });
   }
@@ -122,11 +197,13 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
     onScroll();
+    initCoverflow();
   }
 
   global.PLScrollFX = {
     init,
     refreshRevealObserver,
     onScroll,
+    refreshCoverflow,
   };
 })(window);

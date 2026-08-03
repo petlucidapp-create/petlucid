@@ -45,7 +45,8 @@
       const card = el(`
         <div class="carousel-item">
           <a href="#guide-${screen}" class="guide-card glass card hover-mask" data-accent="${sm.accent}" data-goto="${screen}">
-            <div class="hover-scale-target" style="display:flex;flex-direction:column;height:100%;">
+            <div class="guide-card__glow" aria-hidden="true"></div>
+            <div class="hover-scale-target" style="display:flex;flex-direction:column;height:100%;position:relative;z-index:1;">
               <div class="icon-badge icon-badge-lg guide-card__icon">${I(sm.icon, { size: 30 })}</div>
               <div class="guide-card__title">${title}</div>
               <div class="guide-card__desc">${summary}</div>
@@ -351,12 +352,24 @@
     const sm = m.screenMeta[screen];
     const isTwoLevel = !!m.guideTopics[screen];
 
+    const stripHTML = m.screenOrder.map((s) => {
+      const sMeta = m.screenMeta[s];
+      const isCurrent = s === screen;
+      return `
+        <button type="button" class="guide-strip__item ${isCurrent ? 'is-current' : ''}" data-goto="${s}" data-accent="${sMeta.accent}">
+          <span class="icon-badge" data-accent="${sMeta.accent}">${I(sMeta.icon, { size: 15 })}</span>
+          ${t(`guide.${s}.title`)}
+        </button>
+      `;
+    }).join('');
+
     const section = el(`
       <section class="section guide-section" id="guide-${screen}" data-accent="${sm.accent}">
         <div class="container">
           <button type="button" class="guide-back" data-back-to-catalog>
             ${I('ChevronLeft', { size: 16 })}<span data-ui="backToGuides"></span>
           </button>
+          <div class="guide-strip scrollbar-none">${stripHTML}</div>
           <div class="section-head reveal">
             <div class="icon-badge icon-badge-lg" data-accent="${sm.accent}">${I(sm.icon, { size: 30 })}</div>
             <h2 class="title-lg">${t(`guide.${screen}.title`)}</h2>
