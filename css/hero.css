@@ -205,17 +205,25 @@
 }
 
 /* -------------------------------------------------------------------------
-   Scroll Driven Blur — hero bittiğinde camın arkasında eriyormuş gibi
-   Hero, [data-blur-target]'e class .is-blurring eklenerek JS ile kontrol edilir
+   Katmanlı Hero Scroll Efekti (Madde 3)
+   Her hero-layer kendi scroll penceresinde ayrı ayrı blurlanıp kaybolur:
+   icon -> subtitle -> badges -> keywords -> (en son) title.
+   JS (scrollfx.js) her katman için --pl-blur / --pl-opacity / --pl-y
+   custom property'lerini rAF ile günceller; burada sadece bu değerlere
+   göre render eden CSS var (transition YOK — scroll ile 1:1 senkron
+   olması için, aksi halde gecikmeli/kayık görünür).
    ------------------------------------------------------------------------- */
-.blur-transition {
-  filter: blur(0px);
-  opacity: 1;
-  transform: scale(1);
-  transition: filter var(--dur-slow) var(--ease-out),
-              opacity var(--dur-slow) var(--ease-out),
-              transform var(--dur-slow) var(--ease-out);
+.hero-layer {
+  filter: blur(calc(var(--pl-blur, 0) * 1px));
+  opacity: var(--pl-opacity, 1);
+  transform: translateY(calc(var(--pl-y, 0) * 1px));
   will-change: filter, opacity, transform;
+}
+
+/* Başlık (title) diğerleri kaybolurken ekranda sabit kalır (sticky-like),
+   en son o blurlanarak yukarı doğru gider. */
+.hero-layer--pin {
+  position: relative;
 }
 
 /* Section intro reveal (used broadly) */
