@@ -270,6 +270,58 @@ html.dark .mock-screen {
   }
 }
 
+/* Masaüstü: sabit tek mock-screen görünür, carousel tamamen gizli.
+   Mobil: sabit mock-screen gizlenir, kayan carousel görünür olur. */
+.mock-carousel { display: none; }
+@media (max-width: 900px) {
+  .sticky-flow__mock-col > .mock-screen { display: none; }
+  .mock-carousel { display: block; }
+}
+
+.mock-carousel__track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 12px;
+  padding: 4px 12px 8px;
+  margin: 0 -12px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.mock-carousel__track::-webkit-scrollbar { display: none; }
+
+.mock-carousel__slide {
+  flex: 0 0 82%;
+  scroll-snap-align: center;
+}
+.mock-carousel__slide .mock-screen {
+  max-width: none;
+  margin: 0;
+}
+
+.mock-carousel__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  padding-top: 10px;
+}
+.mock-carousel__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+  opacity: 0.35;
+  transition: opacity var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out), width var(--dur-fast) var(--ease-out);
+}
+.mock-carousel__dot.is-active {
+  opacity: 1;
+  width: 16px;
+  border-radius: 3px;
+  background: var(--accent, var(--blue));
+}
+
 .sticky-flow__steps {
   display: flex;
   flex-direction: column;
