@@ -148,7 +148,7 @@
   // -----------------------------------------------------------------------
   function renderStickyFlow(screen, steps, wrapperEl, accent) {
     // steps: [{ frameId, titleKey, bodyKey }]
-    const { t, ui } = global.PLI18n;
+    const { t } = global.PLI18n;
 
     const mockCol = el(`
       <div class="sticky-flow__mock-col">
@@ -159,15 +159,20 @@
     `);
 
     const stepsCol = el(`<div class="sticky-flow__steps" style="position:relative;"></div>`);
-    const rail = el(`<div class="step-progress-rail"><div class="step-progress-rail__fill" style="height:0%"></div></div>`);
-    stepsCol.appendChild(rail);
 
     steps.forEach((step, idx) => {
       const stepEl = el(`
         <div class="flow-step reveal" data-step-idx="${idx}" data-frame="${step.frameId}">
-          <div class="flow-step__index">${ui('stepLabel')} ${String(idx + 1).padStart(2, '0')}</div>
-          <div class="flow-step__title">${t(step.titleKey)}</div>
-          <div class="flow-step__body">${t(step.bodyKey)}</div>
+          <button type="button" class="flow-step__head" aria-expanded="${idx === 0 ? 'true' : 'false'}">
+            <span class="flow-step__num" data-accent="${accent}">${idx + 1}</span>
+            <span class="flow-step__title">${t(step.titleKey)}</span>
+            <span class="flow-step__chevron">${I('ChevronDown', { size: 18 })}</span>
+          </button>
+          <div class="flow-step__panel">
+            <div class="flow-step__panel-inner">
+              <div class="flow-step__body">${t(step.bodyKey)}</div>
+            </div>
+          </div>
         </div>
       `);
       stepsCol.appendChild(stepEl);
@@ -181,6 +186,35 @@
     inner.innerHTML = buildMockFrameHTML(steps[0].frameId);
     fillMockFrame(inner);
     inner.dataset.currentFrame = steps[0].frameId;
+
+    // Accordion davranışı: bir adıma tıklanınca sadece o adım açılır,
+    // diğerleri kapanır; mock ekran tıklanan adıma crossfade eder.
+    const stepEls = Array.from(stepsCol.querySelectorAll('.flow-step'));
+    function openStep(targetEl, animate) {
+      stepEls.forEach((se) => {
+        const isTarget = se === targetEl;
+        se.classList.toggle('is-active', isTarget);
+        const head = se.querySelector('.flow-step__head');
+        head.setAttribute('aria-expanded', isTarget ? 'true' : 'false');
+      });
+      const frameId = targetEl.getAttribute('data-frame');
+      if (animate) {
+        crossfadeToFrame(inner, frameId);
+      } else {
+        inner.dataset.currentFrame = frameId;
+      }
+    }
+
+    stepEls.forEach((se) => {
+      const head = se.querySelector('.flow-step__head');
+      head.addEventListener('click', () => {
+        if (se.classList.contains('is-active')) return; // zaten açık, kapatma yok — hep bir tanesi açık kalır
+        openStep(se, true);
+      });
+    });
+
+    // İlk adım varsayılan olarak açık
+    openStep(stepEls[0], false);
 
     return { mockCol, stepsCol, inner };
   }
