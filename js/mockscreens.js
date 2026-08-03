@@ -71,7 +71,9 @@
   FRAMES['index.empty_state'] = () => `
     ${topbar('index')}
     <div class="mock-body">
-      ${emptyState('PawPrint', '', '')}
+      <div class="mock-row-card"><div class="mock-row-card__icon">${I('Moon',{size:15})}</div><div class="mock-row-card__text" style="display:flex;gap:14px;align-items:center;"><span class="chip">0</span><span class="chip">0</span></div></div>
+      ${emptyState('Heart', '', '')}
+      <div style="align-self:center;"><span class="chip" style="background:var(--blue);color:#fff;border:none;" data-ph="addPet"></span></div>
     </div>
     ${fab()}
     ${tabBar('index')}
@@ -80,48 +82,79 @@
     ${topbar('index')}
     <div class="mock-body">
       <div class="mock-row-card glass-sheen" style="position:relative;">
-        <div class="mock-row-card__icon">${I('CalendarCheck', { size: 19 })}</div>
+        <div class="mock-row-card__icon">${I('Moon', { size: 19 })}</div>
         <div class="mock-row-card__text">
           <div class="mock-row-card__title" data-ph="today"></div>
           <div class="mock-row-card__sub" data-ph="reminderCount"></div>
         </div>
       </div>
       <div class="mock-divider"></div>
-      ${rowCard('Pill', '08:00', '')}
-      ${rowCard('Footprints', '18:30', '')}
+      ${rowCard('ClipboardList', '', '')}
+      ${['cat','dog','bird'].map(sp => `
+        <div class="mock-row-card">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--glass-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;">${I('PawPrint',{size:18})}</div>
+          <div class="mock-row-card__text"><div class="mock-row-card__title" data-ph="petName_${sp}"></div><div class="mock-row-card__sub" data-ph="petSpecies_${sp}"></div></div>
+        </div>`).join('')}
     </div>
     ${fab()}
     ${tabBar('index')}
   `;
 
+  const PET_HEALTH_CATS = [
+    'Salad', 'Scissors', 'Weight', 'Ruler', 'Footprints', 'DollarSign',
+    'Stethoscope', 'HeartPulse', 'Pill', 'Syringe', 'Leaf', 'ScanLine', 'FlaskConical',
+  ];
+  function petHealthGrid() {
+    return `<div class="mock-grid-2">${PET_HEALTH_CATS.map(icon => `
+      <div class="mock-cat-tile">${I(icon, { size: 20 })}<span>&nbsp;</span></div>
+    `).join('')}</div>`;
+  }
+
   // ---- pets ----
   FRAMES['pets.profile'] = () => `
     <div class="mock-body" style="padding-top:20px;">
-      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:6px;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:6px;">
         <div style="width:76px;height:76px;border-radius:50%;background:var(--glass-bg);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;">${I('PawPrint', { size: 34 })}</div>
-        <div class="mock-pill">${I('Sparkles', { size: 11 })}<span data-ph="petType"></span></div>
+        <div class="mock-row-card__title" data-ph="petName" style="font-size:16px;"></div>
+        <div class="caption" data-ph="petTypeBreedAge"></div>
       </div>
-      ${rowCard('Stethoscope', '', '')}
+      <div class="mock-row-card"><div class="mock-row-card__icon">${I('Stethoscope', { size: 19 })}</div><div class="mock-row-card__text"><div class="mock-row-card__sub" data-ph="assignedVet"></div><div class="mock-row-card__title" data-ph="vetName" style="font-size:14px;"></div></div>${I('ChevronRight',{size:16})}</div>
+      <div class="mock-row-card"><div class="mock-row-card__icon">${I('Pill', { size: 19 })}</div><div class="mock-row-card__text"><div class="mock-row-card__title" data-ph="prescriptions" style="font-size:13px;"></div></div>${I('Trash2',{size:15})}</div>
       <div class="mock-divider"></div>
-      ${catGrid()}
+      ${petHealthGrid()}
     </div>
     ${tabBar('index')}
   `;
   FRAMES['pets.edit_farewell'] = () => `
     ${topbar('pets')}
     <div class="mock-body">
-      <div class="mock-row-card"><div class="mock-row-card__icon">${I('PencilLine', { size: 19 })}</div><div class="mock-row-card__text"><div class="mock-row-card__title" data-ph="editName"></div><div class="mock-row-card__sub" data-ph="editBreed"></div></div></div>
+      <div style="align-self:center;position:relative;">
+        <div style="width:64px;height:64px;border-radius:50%;background:var(--glass-bg);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;">${I('PawPrint', { size: 28 })}</div>
+        <div style="position:absolute;bottom:-2px;right:-2px;width:22px;height:22px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;">${I('Camera',{size:12})}</div>
+      </div>
+      <div class="mock-row-card"><div class="mock-row-card__text"><div class="caption" data-ph="genderLabel"></div><div style="display:flex;gap:6px;"><span class="chip">${I('User',{size:12})}</span><span class="chip" style="background:var(--blue);color:#fff;border:none;">${I('User',{size:12})}</span><span class="chip">?</span></div></div></div>
+      <div class="mock-row-card"><div class="mock-row-card__text"><div class="caption" data-ph="birthDateLabel"></div><div class="mock-row-card__sub" data-ph="birthDate"></div></div>${I('CalendarDays',{size:16})}</div>
       <div class="mock-divider"></div>
-      <div class="mock-row-card" style="border-color:color-mix(in srgb, var(--rose) 30%, var(--glass-border));"><div class="mock-row-card__icon" style="background:color-mix(in srgb, var(--rose) 15%, transparent);color:var(--rose);">${I('HeartHandshake', { size: 19 })}</div><div class="mock-row-card__text"><div class="mock-row-card__title" data-ph="farewellBtn"></div></div></div>
+      <div style="align-self:center;"><span class="chip" style="background:var(--blue);color:#fff;border:none;" data-ph="save"></span></div>
+      <div class="mock-row-card" style="border-color:color-mix(in srgb, var(--rose) 30%, var(--glass-border));justify-content:center;"><span style="font-size:16px;">😢</span><div class="mock-row-card__title" data-ph="farewellBtn" style="color:var(--rose);"></div></div>
+      <div style="border:1px solid var(--glass-border);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;align-items:center;">
+        <span style="font-size:22px;">😢</span>
+        <div class="mock-row-card__title" data-ph="farewellTitle" style="font-size:14px;"></div>
+        <div class="mock-grid-2" style="width:100%;">
+          ${['HeartHandshake','Users','Search','Scale'].map(ic => `<div class="mock-cat-tile" style="aspect-ratio:auto;padding:8px;">${I(ic,{size:14})}<span style="font-size:9px;">&nbsp;</span></div>`).join('')}
+        </div>
+        <span class="chip" style="background:var(--blue);color:#fff;border:none;align-self:center;">${I('HeartHandshake',{size:12})}</span>
+      </div>
     </div>
     ${tabBar('index')}
   `;
   FRAMES['pets.farewelled'] = () => `
-    ${topbar('pets')}
+    ${topbar('index')}
     <div class="mock-body">
-      ${rowCard('PawPrint', '', '')}
+      ${['cat','dog'].map(() => `<div class="mock-row-card"><div style="width:40px;height:40px;border-radius:50%;background:var(--glass-bg);flex-shrink:0;"></div><div class="mock-row-card__text"><div class="mock-row-card__title" data-ph="petName" style="font-size:14px;"></div><div class="mock-row-card__sub" data-ph="petSpecies_cat"></div></div></div>`).join('')}
       <div class="mock-divider"></div>
-      <div style="opacity:0.5;">${rowCard('HeartHandshake', '', '')}</div>
+      <div class="caption" style="display:flex;align-items:center;gap:6px;">😢<span data-ph="farewellsSection"></span></div>
+      <div class="mock-row-card" style="opacity:0.55;"><div style="width:40px;height:40px;border-radius:50%;background:var(--glass-bg);flex-shrink:0;"></div><div class="mock-row-card__text"><div class="mock-row-card__title" style="font-size:14px;">😢 <span data-ph="petName"></span></div><div class="mock-row-card__sub" data-ph="petSpecies_cat"></div></div></div>
     </div>
     ${tabBar('index')}
   `;
