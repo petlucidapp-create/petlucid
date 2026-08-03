@@ -120,6 +120,40 @@
     });
   }
 
+  // -------------------------------------------------------------------
+  // Guide carousel — masaüstü ok navigasyonu (Apple.com tarzı)
+  // -------------------------------------------------------------------
+  function initCarouselNav() {
+    const track = document.getElementById('guideCarousel');
+    const prevBtn = document.getElementById('guideCarouselPrev');
+    const nextBtn = document.getElementById('guideCarouselNext');
+    if (!track || !prevBtn || !nextBtn) return;
+
+    function cardStep() {
+      const item = track.querySelector('.carousel-item');
+      if (!item) return track.clientWidth * 0.8;
+      const style = getComputedStyle(track);
+      const gap = parseFloat(style.columnGap || style.gap || '20');
+      return item.getBoundingClientRect().width + gap;
+    }
+
+    function updateButtons() {
+      const max = track.scrollWidth - track.clientWidth;
+      prevBtn.disabled = track.scrollLeft <= 4;
+      nextBtn.disabled = track.scrollLeft >= max - 4;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -cardStep(), behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: cardStep(), behavior: 'smooth' });
+    });
+    track.addEventListener('scroll', updateButtons, { passive: true });
+    window.addEventListener('resize', updateButtons);
+    updateButtons();
+  }
+
   async function boot() {
     try {
       await window.PLI18n.loadData();
@@ -140,6 +174,7 @@
 
     window.PLRender.renderAll();
     bindSmoothScroll();
+    initCarouselNav();
 
     window.PLScrollFX.init();
   }
