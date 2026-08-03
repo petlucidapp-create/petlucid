@@ -9,43 +9,11 @@
  */
 (function (global) {
   let ticking = false;
-  let stepGroups = []; // { screen, inner, steps: [el...], rail }
 
-  function collectStepGroups() {
-    stepGroups = [];
-    document.querySelectorAll('.sticky-flow').forEach((flow) => {
-      const inner = flow.querySelector('[id^="mockInner-"]');
-      const rail = flow.querySelector('.step-progress-rail__fill');
-      const steps = Array.from(flow.querySelectorAll('.flow-step'));
-      if (inner && steps.length) {
-        stepGroups.push({ inner, rail, steps });
-      }
-    });
-  }
-
-  function updateStickyFlows() {
-    const viewportCenter = window.innerHeight * 0.5;
-    stepGroups.forEach((group) => {
-      let activeIdx = 0;
-      let minDist = Infinity;
-      group.steps.forEach((step, idx) => {
-        const rect = step.getBoundingClientRect();
-        const stepCenter = rect.top + rect.height / 2;
-        const dist = Math.abs(stepCenter - viewportCenter);
-        if (dist < minDist) { minDist = dist; activeIdx = idx; }
-        step.classList.toggle('is-active', dist < minDist + 0.01 ? false : false); // reset below
-      });
-      group.steps.forEach((step, idx) => step.classList.toggle('is-active', idx === activeIdx));
-
-      const frameId = group.steps[activeIdx].getAttribute('data-frame');
-      global.PLRender.crossfadeToFrame(group.inner, frameId);
-
-      if (group.rail) {
-        const pct = group.steps.length > 1 ? (activeIdx / (group.steps.length - 1)) * 100 : 100;
-        group.rail.style.height = pct + '%';
-      }
-    });
-  }
+  // Not: Adım aktivasyonu artık scroll ile değil, tıklama (accordion) ile
+  // yapılıyor — bkz. render.js renderStickyFlow(). Bu yüzden eskiden burada
+  // bulunan collectStepGroups()/updateStickyFlows() (scroll ile otomatik
+  // adım/mock geçişi) kaldırıldı.
 
   // -------------------------------------------------------------------
   // Scroll Driven Blur — Hero
@@ -104,7 +72,6 @@
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(() => {
-      updateStickyFlows();
       updateHeroBlur();
       updateChrome();
       ticking = false;
@@ -112,19 +79,14 @@
   }
 
   function init() {
-    collectStepGroups();
     global.__plRevealIO = setupRevealObserver();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', () => {
-      collectStepGroups();
-      onScroll();
-    });
+    window.addEventListener('resize', onScroll);
     onScroll();
   }
 
   global.PLScrollFX = {
     init,
-    collectStepGroups,
     refreshRevealObserver,
     onScroll,
   };
