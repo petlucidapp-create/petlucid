@@ -113,8 +113,22 @@
     restorePurchase: { tr: 'Satın alımları geri yükle', en: 'Restore purchases' },
   };
 
+  // Ad/soyad gerektiren placeholder key'leri -> mocknames.js'teki tür/rol
+  // anahtarına eşleme. Bu key'ler PLACEHOLDER_TEXT yerine PLMockNames'ten
+  // dile göre çekilir.
+  const NAME_KEY_MAP = {
+    petNameCat: 'cat', petNameDog: 'dog', petNameBird: 'bird',
+    petNameFish: 'fish', petNameHamster: 'hamster', petNameRabbit: 'rabbit',
+    petNameReptile: 'reptile', petNamePoultry: 'poultry', petNameHorse: 'horse',
+    petNameCow: 'cow', petNameGoatSheep: 'goat_sheep',
+    vetName: 'vet', ownerName: 'owner',
+  };
+
   function phText(key) {
     const lang = global.PLI18n.currentLang();
+    if (NAME_KEY_MAP[key] && global.PLMockNames) {
+      return global.PLMockNames.mockName(NAME_KEY_MAP[key], lang);
+    }
     const entry = PLACEHOLDER_TEXT[key];
     if (!entry) return '';
     return entry[lang] || entry.tr || entry.en || '';
@@ -398,4 +412,4 @@
     buildMockFrameHTML,
   };
 })(window);
-                                                                   
+
