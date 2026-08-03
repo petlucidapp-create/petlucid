@@ -241,8 +241,11 @@
     const isTwoLevel = !!m.guideTopics[screen];
 
     const section = el(`
-      <section class="section" id="guide-${screen}" data-accent="${sm.accent}">
+      <section class="section guide-section" id="guide-${screen}" data-accent="${sm.accent}">
         <div class="container">
+          <button type="button" class="guide-back" data-back-to-catalog>
+            ${I('ChevronLeft', { size: 16 })}<span data-ui="backToGuides"></span>
+          </button>
           <div class="section-head reveal">
             <div class="icon-badge icon-badge-lg" data-accent="${sm.accent}">${I(sm.icon, { size: 30 })}</div>
             <h2 class="title-lg">${t(`guide.${screen}.title`)}</h2>
@@ -266,12 +269,15 @@
       body.appendChild(flowWrap);
       renderStickyFlow(screen, steps, flowWrap, sm.accent);
     } else {
-      // İki seviyeli: topic seçici kartlar + her topic için ayrı sticky-flow bloğu
+      // İki seviyeli: topic seçici kartlar + her topic için ayrı sticky-flow bloğu.
+      // Varsayılan: sadece topic listesi görünür. Bir topic'e tıklanınca sadece
+      // o topic'in bloğu görünür olur, liste ve diğer topic'ler gizlenir (Madde 6.1).
       const topicIds = m.guideTopics[screen];
-      const topicNav = el(`<div class="card glass card-tight reveal" style="margin-bottom:48px;padding:8px;"></div>`);
+      const topicListWrap = el(`<div class="topic-list-wrap reveal"></div>`);
+      const topicNav = el(`<div class="card glass card-tight" style="padding:8px;"></div>`);
       topicIds.forEach((tid, i) => {
         const item = el(`
-          <div class="topic-pill" data-topic-target="topic-${screen}-${tid}">
+          <div class="topic-pill" data-topic-target="${screen}-${tid}">
             <div class="icon-badge" data-accent="${sm.accent}">${I(m.sectionIcons[`${screen}.${tid}`] || sm.icon, { size: 22 })}</div>
             <div style="flex:1;min-width:0;">
               <div style="font-weight:700;font-size:15px;">${t(`guide.${screen}.topics.${tid}.navTitle`)}</div>
@@ -283,17 +289,23 @@
         `);
         topicNav.appendChild(item);
       });
-      body.appendChild(topicNav);
+      topicListWrap.appendChild(topicNav);
+      body.appendChild(topicListWrap);
 
+      const topicBlocks = {};
       topicIds.forEach((tid) => {
         const topicSectionIds = Object.keys(global.PLI18n.state.data.strings[global.PLI18n.currentLang()].guide[screen].topics[tid].sections || {});
         const wrapBlock = el(`
-          <div class="topic-flow-block" id="topic-${screen}-${tid}" style="margin-bottom:96px;">
-            <div class="eyebrow reveal" data-accent="${sm.accent}" style="margin-bottom:10px;"><span class="dot"></span>${t(`guide.${screen}.topics.${tid}.navTitle`)}</div>
-            <div class="sticky-flow reveal"></div>
+          <div class="topic-flow-block" id="topic-${screen}-${tid}" data-topic-id="${screen}-${tid}">
+            <button type="button" class="guide-back guide-back--topic" data-back-to-topics="${screen}">
+              ${I('ChevronLeft', { size: 16 })}<span data-ui="backToTopics"></span>
+            </button>
+            <div class="eyebrow" data-accent="${sm.accent}" style="margin-bottom:10px;"><span class="dot"></span>${t(`guide.${screen}.topics.${tid}.navTitle`)}</div>
+            <div class="sticky-flow"></div>
           </div>
         `);
         body.appendChild(wrapBlock);
+        topicBlocks[tid] = wrapBlock;
         const steps = topicSectionIds.map((sid) => ({
           frameId: `${screen}.${tid}.${sid}`,
           titleKey: `guide.${screen}.topics.${tid}.sections.${sid}.title`,
@@ -301,6 +313,10 @@
         }));
         renderStickyFlow(`${screen}-${tid}`, steps, wrapBlock.querySelector('.sticky-flow'), sm.accent);
       });
+
+      // Başlangıçta: sadece topic listesi görünür, tüm topic blokları gizli.
+      Object.values(topicBlocks).forEach((blk) => blk.classList.remove('is-active'));
+      topicListWrap.classList.add('is-active');
     }
 
     return section;
@@ -314,6 +330,7 @@
     m.screenOrder.forEach((screen) => {
       main.appendChild(renderScreenSection(screen));
     });
+    applyUIStrings(main);
   }
 
   // -----------------------------------------------------------------------
