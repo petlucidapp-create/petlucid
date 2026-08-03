@@ -74,10 +74,12 @@
 }
 .guide-card:active { transform: translateY(-2px) scale(0.98); }
 
-/* Parallax glow — kartın KENDİSİ değil, arkasındaki blur'lu ışık katmanı
-   scroll ile kayar (JS: scrollfx.js updateCardParallax). Koyu temada kart
-   zemini (--glass-bg) sabit/okunur kalır, sadece arkadaki glow hareket
-   ederek derinlik hissi verir — kartın titremesi/okunabilirlik kaybı yok. */
+/* Basılınca / basılı tutulunca çıkan arka plan rengi — Madde 2: kartın
+   normal halinde HİÇ renk yok (nötr glass zemin), sadece dokunma/basma
+   anında arkada accent rengiyle yumuşak bir parıltı belirir. Masaüstünde
+   hover değil, :active (basılı tutma) tetikler; touch cihazlarda da
+   :active aynı şekilde çalışır (parmak basılı kaldığı sürece). Simgelerin
+   rengi bu efekte dahil değil — icon-badge kendi accent rengini korur. */
 .guide-card__glow {
   position: absolute;
   inset: -10%;
@@ -86,15 +88,15 @@
   background: radial-gradient(circle at 30% 20%,
     color-mix(in srgb, var(--accent, var(--blue)) 32%, transparent), transparent 65%);
   filter: blur(26px);
-  opacity: 0.55;
-  transform: translateY(calc(var(--pl-card-y, 0) * 1px));
-  will-change: transform;
+  opacity: 0;
+  will-change: opacity;
   pointer-events: none;
-  transition: opacity var(--dur-med) var(--ease-out);
+  transition: opacity 220ms var(--ease-out);
 }
-.guide-card:hover .guide-card__glow { opacity: 0.85; }
-html.dark .guide-card__glow { opacity: 0.4; }
-html.dark .guide-card:hover .guide-card__glow { opacity: 0.65; }
+.guide-card:active .guide-card__glow,
+.guide-card.is-pressed .guide-card__glow { opacity: 0.85; }
+html.dark .guide-card:active .guide-card__glow,
+html.dark .guide-card.is-pressed .guide-card__glow { opacity: 0.7; }
 
 .guide-card__icon {
   margin-bottom: 20px;
