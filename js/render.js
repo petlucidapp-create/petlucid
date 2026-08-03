@@ -302,7 +302,6 @@
 
   function renderStaticUIText() {
     const { ui } = global.PLI18n;
-    document.getElementById('heroEyebrow').lastChild.textContent = ' ' + ui('heroEyebrow');
     document.getElementById('heroTitle').innerHTML = ui('heroTitle');
     document.getElementById('heroSubtitle').textContent = ui('heroSubtitle');
     document.getElementById('scrollCueText').textContent = ui('scrollCue');
