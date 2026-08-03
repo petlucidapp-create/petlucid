@@ -72,43 +72,122 @@
     document.getElementById('langTriggerLabel').textContent = langName(currentLang());
   }
 
+  const guideViewState = { screen: null, topic: null };
+
   function switchLanguage(lang) {
     window.PLI18n.setLang(lang);
     updateLangTriggerLabel();
     buildLangMenu();
-    // Scroll pozisyonunu koru
-    const scrollY = window.scrollY;
     window.PLRender.renderAll();
     window.requestAnimationFrame(() => {
-      window.scrollTo(0, scrollY);
       window.PLScrollFX.refreshRevealObserver();
       window.PLScrollFX.onScroll();
-      bindSmoothScroll();
+      bindGuideNavigation();
+      restoreGuideView();
     });
   }
 
-  function bindSmoothScroll() {
+  // -------------------------------------------------------------------
+  // Guide navigation — "sadece tıklanan blok görünür" (Madde 6 & 6.1)
+  // Kart tıklanınca: catalog gizlenir, sadece o guide-section görünür.
+  // Topic-pill tıklanınca: topic listesi gizlenir, sadece o topic bloğu görünür.
+  // Geri butonları bunu tersine çevirir.
+  // -------------------------------------------------------------------
+  function revealNow(root) {
+    root.querySelectorAll('.reveal:not(.is-visible)').forEach((elm) => elm.classList.add('is-visible'));
+  }
+
+  function showGuideSection(screen) {
+    document.querySelectorAll('.guide-section').forEach((sec) => {
+      sec.classList.toggle('is-active', sec.id === `guide-${screen}`);
+    });
+    document.getElementById('guideSection').classList.add('is-hidden');
+    document.getElementById('guideDetails').classList.add('is-active');
+    guideViewState.screen = screen;
+    guideViewState.topic = null;
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    const activeSection = document.getElementById(`guide-${screen}`);
+    if (activeSection) revealNow(activeSection);
+  }
+
+  function showCatalog() {
+    document.querySelectorAll('.guide-section').forEach((sec) => sec.classList.remove('is-active'));
+    document.getElementById('guideSection').classList.remove('is-hidden');
+    document.getElementById('guideDetails').classList.remove('is-active');
+    guideViewState.screen = null;
+    guideViewState.topic = null;
+    const target = document.getElementById('guideSection');
+    if (target) target.scrollIntoView({ behavior: 'auto', block: 'start' });
+  }
+
+  function showTopic(screen, topicId) {
+    const sectionEl = document.getElementById(`guide-${screen}`);
+    if (!sectionEl) return;
+    sectionEl.querySelectorAll('.topic-flow-block').forEach((blk) => {
+      blk.classList.toggle('is-active', blk.getAttribute('data-topic-id') === topicId);
+    });
+    const listWrap = sectionEl.querySelector('.topic-list-wrap');
+    if (listWrap) listWrap.classList.remove('is-active');
+    guideViewState.screen = screen;
+    guideViewState.topic = topicId;
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    revealNow(sectionEl);
+  }
+
+  function showTopicList(screen) {
+    const sectionEl = document.getElementById(`guide-${screen}`);
+    if (!sectionEl) return;
+    sectionEl.querySelectorAll('.topic-flow-block').forEach((blk) => blk.classList.remove('is-active'));
+    const listWrap = sectionEl.querySelector('.topic-list-wrap');
+    if (listWrap) listWrap.classList.add('is-active');
+    guideViewState.topic = null;
+  }
+
+  // Dil değişiminden sonra (renderAll ile DOM sıfırdan kurulduğunda) aynı
+  // görünüme geri döner: katalogdaysak dokunma, bir screen/topic açıksa
+  // scroll pozisyonuna güvenmeden aynı bloğu tekrar aktif hale getirir.
+  function restoreGuideView() {
+    if (!guideViewState.screen) return; // katalogtaydık, renderAll zaten katalog + gizli sectionlar üretti
+    document.querySelectorAll('.guide-section').forEach((sec) => {
+      sec.classList.toggle('is-active', sec.id === `guide-${guideViewState.screen}`);
+    });
+    document.getElementById('guideSection').classList.add('is-hidden');
+    document.getElementById('guideDetails').classList.add('is-active');
+    const activeSection = document.getElementById(`guide-${guideViewState.screen}`);
+    if (guideViewState.topic && activeSection) {
+      activeSection.querySelectorAll('.topic-flow-block').forEach((blk) => {
+        blk.classList.toggle('is-active', blk.getAttribute('data-topic-id') === guideViewState.topic);
+      });
+      const listWrap = activeSection.querySelector('.topic-list-wrap');
+      if (listWrap) listWrap.classList.remove('is-active');
+    }
+    if (activeSection) revealNow(activeSection);
+  }
+
+  function bindGuideNavigation() {
     document.querySelectorAll('[data-goto]').forEach((elm) => {
       elm.addEventListener('click', (e) => {
-        const targetId = 'guide-' + elm.getAttribute('data-goto');
-        const target = document.getElementById(targetId);
-        if (target) {
-          e.preventDefault();
-          const headerOffset = 76;
-          const y = target.getBoundingClientRect().top + window.scrollY - headerOffset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
-      }, { once: false });
+        e.preventDefault();
+        showGuideSection(elm.getAttribute('data-goto'));
+      });
+    });
+
+    document.querySelectorAll('[data-back-to-catalog]').forEach((elm) => {
+      elm.addEventListener('click', () => showCatalog());
     });
 
     document.querySelectorAll('[data-topic-target]').forEach((elm) => {
       elm.addEventListener('click', () => {
-        const target = document.getElementById(elm.getAttribute('data-topic-target'));
-        if (target) {
-          const headerOffset = 76;
-          const y = target.getBoundingClientRect().top + window.scrollY - headerOffset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
+        const val = elm.getAttribute('data-topic-target'); // "{screen}-{topicId}"
+        const dashIdx = val.indexOf('-');
+        const screen = val.slice(0, dashIdx);
+        showTopic(screen, val);
+      });
+    });
+
+    document.querySelectorAll('[data-back-to-topics]').forEach((elm) => {
+      elm.addEventListener('click', () => {
+        showTopicList(elm.getAttribute('data-back-to-topics'));
       });
     });
   }
@@ -172,7 +251,7 @@
     initBackToTop();
 
     window.PLRender.renderAll();
-    bindSmoothScroll();
+    bindGuideNavigation();
     initCarouselNav();
 
     window.PLScrollFX.init();
