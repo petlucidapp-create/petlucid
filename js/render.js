@@ -180,6 +180,7 @@
 
     const mockCol = el(`
       <div class="sticky-flow__mock-col">
+        <div class="mock-glow" id="mockGlow-${screen}"></div>
         <div class="mock-screen" id="mockScreen-${screen}">
           <div class="mock-screen__inner" id="mockInner-${screen}"></div>
         </div>
@@ -187,6 +188,7 @@
           <div class="mock-carousel__track">
             ${steps.map((step, idx) => `
               <div class="mock-carousel__slide" data-slide-idx="${idx}">
+                <div class="mock-glow"></div>
                 <div class="mock-screen">
                   <div class="mock-screen__inner"></div>
                 </div>

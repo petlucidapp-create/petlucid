@@ -116,12 +116,12 @@
   function updateStandaloneMockGlow() {
     const viewportH = window.innerHeight || document.documentElement.clientHeight;
     const viewportCenter = viewportH / 2;
-    document.querySelectorAll('.mock-screen').forEach((el) => {
-      // Sticky kolon içindeyse zaten kolon üzerinden --pl-glow miras alır;
-      // burada her mock-screen'in KENDİ konumuna göre de yazıyoruz ki
-      // sticky olmayan / carousel dışı tüm örnekler de kapsansın.
+    // .mock-glow, .mock-screen'in KARDEŞİ (aynı ebeveyn içinde ayrı bir
+    // eleman) — bu yüzden --pl-glow doğrudan .mock-glow üzerine yazılır,
+    // .mock-screen üzerine değil (miras/inheritance kardeşler arası işlemez).
+    document.querySelectorAll('.mock-glow').forEach((el) => {
       const rect = el.getBoundingClientRect();
-      if (rect.height === 0 && rect.width === 0) return; // display:none
+      if (rect.height === 0 && rect.width === 0) return; // display:none / gizli
       const elCenter = rect.top + rect.height / 2;
       const norm = Math.min(Math.max((elCenter - viewportCenter) / viewportCenter, -1), 1);
       const glow = Math.max(1 - Math.abs(norm), 0);
