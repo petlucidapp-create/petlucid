@@ -373,7 +373,7 @@
           <div class="section-head reveal">
             <div class="icon-badge icon-badge-lg" data-accent="${sm.accent}">${I(sm.icon, { size: 30 })}</div>
             <h2 class="title-lg">${t(`guide.${screen}.title`)}</h2>
-            ${t(`guide.${screen}.intro`) ? `<p class="body-lg">${t(`guide.${screen}.intro`)}</p>` : ''}
+            ${t(`guide.${screen}.intro`) ? `<p class="body-lg guide-section__intro">${t(`guide.${screen}.intro`)}</p>` : ''}
           </div>
         </div>
         <div class="container" id="guideBody-${screen}"></div>
