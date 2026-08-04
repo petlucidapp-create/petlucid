@@ -3,7 +3,7 @@
    ========================================================================== */
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 html, body {
   margin: 0;
@@ -13,10 +13,17 @@ html, body {
   font-family: var(--font-text);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
   transition: background var(--dur-med) var(--ease-out), color var(--dur-med) var(--ease-out);
 }
 
+/* NOT: overflow-x:hidden SADECE html'de olmalı, body'de DEĞİL.
+   body'ye overflow-x:hidden vermek (overflow-y belirtilmese bile) body'yi
+   kendi başına bir "scroll container"a çeviriyor; bu da içindeki TÜM
+   position:sticky elemanları (örn. .sticky-flow__mock-col, Madde 1) kalıcı
+   olarak kırıyordu — sticky, viewport yerine yanlış bir scroll bağlamına
+   göre hesaplanıyordu ve masaüstünde mock ekran artık scroll ile birlikte
+   akıp gidiyordu, sabit kalmıyordu. Yatay taşma zaten html seviyesinde
+   engellendiği için body'de tekrar tanımlamaya hiç gerek yok. */
 body { min-height: 100vh; }
 
 img { max-width: 100%; display: block; }
