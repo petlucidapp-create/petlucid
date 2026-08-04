@@ -24,10 +24,12 @@
   --slate: #636366;
   --success: #34c759;
 
-  /* --- Liquid gradient accent (organic background blobs) --- */
+  /* --- Liquid gradient accent (organic background blobs) ---
+     Madde 2: turuncu kaldırıldı, üçüncü katman da mavi ailesinden
+     (daha açık/camgöbeği-mavi bir ton) — palet tamamen mavi. */
   --liquid-blue: #0071e3;
   --liquid-blue-2: #5e5ce6;
-  --liquid-orange: #ff8a3d;
+  --liquid-blue-3: #35b7ff;
 
   /* --- Glass tokens --- */
   --glass-bg: rgba(255, 255, 255, 0.55);
@@ -80,7 +82,7 @@ html.dark {
 
   --liquid-blue: #0a84ff;
   --liquid-blue-2: #7d7aff;
-  --liquid-orange: #ff9f5a;
+  --liquid-blue-3: #64d2ff;
 
   --glass-bg: rgba(28, 28, 30, 0.55);
   --glass-bg-strong: rgba(28, 28, 30, 0.72);

@@ -190,9 +190,12 @@ html.dark .hero__glow-blob {
     color-mix(in srgb, var(--liquid-blue-2) 42%, transparent), transparent 58%);
   animation: liquid-blob-b 19s ease-in-out infinite;
 }
+/* Madde 2: üçüncü katman artık turuncu değil, mavi ailesinden üçüncü bir
+   ton kullanıyor — dalgalanma (3 katmanlı hareket) aynen korunuyor, sadece
+   palet tamamen maviye çekildi. */
 .hero__glow-blob {
   background: radial-gradient(circle at 52% 72%,
-    color-mix(in srgb, var(--liquid-orange) 38%, transparent), transparent 55%);
+    color-mix(in srgb, var(--liquid-blue-3) 38%, transparent), transparent 55%);
   animation: liquid-blob-c 23s ease-in-out infinite;
 }
 
@@ -289,7 +292,13 @@ html.dark .hero__glow-blob {
 }
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  /* transform: translateY(0) DEĞİL, transform: none — translateY(0) bile
+     olsa bir transform değeri, elemanı yeni bir "containing block" yapar
+     ve içindeki position:sticky çocuklarını (örn. .sticky-flow__mock-col)
+     kalıcı olarak kırar (Madde 1). Animasyon bitince transform'u tamamen
+     kaldırıyoruz ki masaüstünde mock ekranı scroll boyunca gerçekten
+     sabit kalabilsin. transition sırasında görsel fark yok (0px = 0px). */
+  transform: none;
 }
 
 .section-head {
