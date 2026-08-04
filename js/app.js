@@ -103,12 +103,15 @@
   // header yüksekliği kadar pay bırakır. Önceki davranış her zaman en başa
   // (hero'nun üstüne) atlıyordu, bu "otomatik sitenin en başına gidiyor"
   // şikayetine sebep oluyordu.
+  // Madde 5: behavior artık 'auto' (anlık sıçrama / "pat diye" atlama)
+  // değil, 'smooth' — kart tıklanınca sayfa sakince, akıcı bir kaydırmayla
+  // ilgili bölüme gelir; ani zıplama hissi kalkar.
   function scrollToSectionTop(sectionEl) {
     const header = document.getElementById('siteHeader');
     const headerH = header ? header.getBoundingClientRect().height : 0;
     const rect = sectionEl.getBoundingClientRect();
     const targetY = window.scrollY + rect.top - headerH - 12;
-    window.scrollTo({ top: Math.max(targetY, 0), behavior: 'auto' });
+    window.scrollTo({ top: Math.max(targetY, 0), behavior: 'smooth' });
   }
 
   function showGuideSection(screen) {
@@ -133,7 +136,7 @@
     guideViewState.screen = null;
     guideViewState.topic = null;
     const target = document.getElementById('guideSection');
-    if (target) target.scrollIntoView({ behavior: 'auto', block: 'start' });
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function showTopic(screen, topicId) {

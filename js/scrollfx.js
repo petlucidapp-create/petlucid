@@ -25,12 +25,15 @@
   // hemen önce kaybolur). Her katmanın kendi [start, end] penceresi var;
   // pencere içinde blur + opacity + hafif translateY uygulanır, pencere
   // dışında tam nettir.
+  // Madde 3: store rozetleri ve anahtar kelimeler artık daha geç başlayıp
+  // daha uzun bir pencereye yayılıyor — scroll'un ilk hareketinde hemen
+  // kaybolmuyorlar, ekranda daha uzun süre net kalıyorlar.
   const HERO_LAYER_WINDOWS = {
-    icon:     { start: 0.00, end: 0.20 },
-    badges:   { start: 0.16, end: 0.38 },
-    keywords: { start: 0.34, end: 0.56 },
-    subtitle: { start: 0.62, end: 0.84 },
-    title:    { start: 0.80, end: 1.00 },
+    icon:     { start: 0.00, end: 0.16 },
+    badges:   { start: 0.30, end: 0.58 },
+    keywords: { start: 0.46, end: 0.74 },
+    subtitle: { start: 0.70, end: 0.90 },
+    title:    { start: 0.86, end: 1.00 },
   };
   const HERO_MAX_BLUR_PX = 10;
   const HERO_MAX_RISE_PX = 22; // yukarı doğru kayarak kaybolma mesafesi
@@ -70,6 +73,29 @@
       // title'ın kendisi düz yukarı gider.
       el.style.setProperty('--pl-y', String(-eased * HERO_MAX_RISE_PX));
     }
+  }
+
+  // -------------------------------------------------------------------
+  // Madde 4 — Mock ekranlar için çok hafif dikey parallax. Her sticky
+  // mock kolonunun viewport merkezine olan uzaklığı ölçülür ve küçük bir
+  // translateY'e çevrilir (max birkaç piksel) — belirgin bir kayma değil,
+  // ince bir "nefes alma" hissi. Sticky pozisyonlamayı bozmamak için mock
+  // ekranın KENDİSİNE değil (o zaten sticky), .mock-screen/.mock-carousel
+  // elemanına (--pl-mock-y ile) uygulanıyor.
+  // -------------------------------------------------------------------
+  const MOCK_PARALLAX_MAX_PX = 9;
+
+  function updateMockParallax() {
+    const cols = document.querySelectorAll('.sticky-flow__mock-col');
+    const viewportH = window.innerHeight || document.documentElement.clientHeight;
+    cols.forEach((col) => {
+      const rect = col.getBoundingClientRect();
+      const colCenter = rect.top + rect.height / 2;
+      const viewportCenter = viewportH / 2;
+      // -1 (üstte) .. 0 (merkezde) .. 1 (altta), aşırı uçlarda kırpılır
+      const norm = Math.min(Math.max((colCenter - viewportCenter) / viewportCenter, -1), 1);
+      col.style.setProperty('--pl-mock-y', String(-norm * MOCK_PARALLAX_MAX_PX));
+    });
   }
 
   // -------------------------------------------------------------------
@@ -163,6 +189,7 @@
     requestAnimationFrame(() => {
       updateHeroBlur();
       updateChrome();
+      updateMockParallax();
       ticking = false;
     });
   }
