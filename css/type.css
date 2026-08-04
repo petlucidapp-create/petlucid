@@ -85,6 +85,17 @@ p {
   hyphens: none;
 }
 
+/* Sağlık / Ayarlar gibi ekranların .section-head içindeki intro paragrafı
+   (guide.<screen>.intro) istisnadır: kısa bir altyazı değil, çok satırlı
+   uzun bir açıklama metni — merkezi hizalandığında satır satır çok
+   düzensiz/dağınık kelime aralıkları oluşuyordu. Bu yüzden yukarıdaki genel
+   .section-head .body-lg kuralının aksine, iki yana yaslanır. */
+.section-head .body-lg.guide-section__intro {
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+}
+
 .caption {
   font-size: 12.5px;
   font-weight: 600;
