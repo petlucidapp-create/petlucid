@@ -95,6 +95,37 @@
       // -1 (üstte) .. 0 (merkezde) .. 1 (altta), aşırı uçlarda kırpılır
       const norm = Math.min(Math.max((colCenter - viewportCenter) / viewportCenter, -1), 1);
       col.style.setProperty('--pl-mock-y', String(-norm * MOCK_PARALLAX_MAX_PX));
+
+      // Parallax glow (Mock arkası ışıltı): kolon viewport merkezine
+      // yakınken parlak (--pl-glow ~1), kenara/dışarı çıktıkça söner (~0).
+      // Aynı normalize edilmiş mesafe kullanılır ama ters çevrilip
+      // 0..1 aralığına sıkıştırılır.
+      const glow = Math.max(1 - Math.abs(norm), 0);
+      col.style.setProperty('--pl-glow', String(glow));
+    });
+  }
+
+  // -------------------------------------------------------------------
+  // Mock görüntülerin arkasındaki parallax ışıltı — sabit (statik konumlu)
+  // mock ekranlar (.sticky-flow__mock-col dışındaki, ör. mobilde artık
+  // sticky olmayan kolon içindekiler dahil tüm .mock-screen'ler) için de
+  // aynı mantık: viewport merkezine yakınlık = parlaklık. Bu, mobilde artık
+  // sticky olmayan mock ekranın da doğal akışta kayarken ışıltısının
+  // merkeze gelince parlaması, kenara çıkınca sönmesi için gerekli.
+  // -------------------------------------------------------------------
+  function updateStandaloneMockGlow() {
+    const viewportH = window.innerHeight || document.documentElement.clientHeight;
+    const viewportCenter = viewportH / 2;
+    document.querySelectorAll('.mock-screen').forEach((el) => {
+      // Sticky kolon içindeyse zaten kolon üzerinden --pl-glow miras alır;
+      // burada her mock-screen'in KENDİ konumuna göre de yazıyoruz ki
+      // sticky olmayan / carousel dışı tüm örnekler de kapsansın.
+      const rect = el.getBoundingClientRect();
+      if (rect.height === 0 && rect.width === 0) return; // display:none
+      const elCenter = rect.top + rect.height / 2;
+      const norm = Math.min(Math.max((elCenter - viewportCenter) / viewportCenter, -1), 1);
+      const glow = Math.max(1 - Math.abs(norm), 0);
+      el.style.setProperty('--pl-glow', String(glow));
     });
   }
 
@@ -116,6 +147,10 @@
       const dist = Math.abs(slideCenter - trackCenter) / (r.width || 1);
       slide.style.setProperty('--pl-dist', String(dist));
       slide.style.setProperty('--pl-z', String(dist < 0.15 ? 10 : 5));
+      // Coverflow'da öne gelen (ortadaki, dist~0) slayt parlar; yanlara
+      // kayan/arkaya düşen slaytların ışıltısı söner.
+      const glow = Math.max(1 - Math.min(dist, 1), 0);
+      slide.style.setProperty('--pl-glow', String(glow));
     });
   }
 
@@ -190,6 +225,7 @@
       updateHeroBlur();
       updateChrome();
       updateMockParallax();
+      updateStandaloneMockGlow();
       ticking = false;
     });
   }
