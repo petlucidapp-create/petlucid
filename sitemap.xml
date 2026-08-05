@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  petlucidapp.com — sitemap.xml
+
+  NOT: Site şu an tek bir HTML sayfası (index.html) ve içerik JavaScript ile
+  DOM'a yazılıyor (kılavuz kartları, adımlar, 21 dil). Bu yüzden sitemap'te
+  şimdilik sadece TEK url var — gerçekte var olmayan sayfaları (örn. /en/,
+  /guide/pets vb.) sitemap'e eklemek Google Search Console'da "bulunamadı"
+  hatalarına yol açar.
+
+  Bir önceki SEO değerlendirmesinde önerdiğim gibi, her kılavuz/dil için ayrı
+  bir statik sayfa/URL oluşturulduğunda, bu dosyaya o URL'ler <url> bloğu
+  olarak eklenmeli ve dil versiyonları için <xhtml:link rel="alternate"
+  hreflang="..."> etiketleri kullanılmalı. O yapı kurulana kadar hreflang
+  eklemek yanıltıcı olur çünkü tüm diller şu an aynı URL'yi paylaşıyor.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://petlucidapp.com/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

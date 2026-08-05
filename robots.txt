@@ -1,0 +1,7 @@
+# petlucidapp.com — robots.txt
+# Tüm arama motoru botlarına tüm siteyi tarama izni verir.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://petlucidapp.com/sitemap.xml
