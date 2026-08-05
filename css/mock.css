@@ -332,9 +332,16 @@ html.dark .mock-glow::after {
 }
 @media (max-width: 900px) {
   .sticky-flow__mock-col {
-    position: relative;
+    position: static;
+    top: unset;
     order: -1;
     margin-bottom: 8px;
+  }
+  /* Mobilde parallax translateY de devre dışı — normal akışta kayar */
+  .sticky-flow__mock-col .mock-screen,
+  .sticky-flow__mock-col .mock-carousel {
+    transform: none !important;
+    will-change: auto;
   }
 }
 
