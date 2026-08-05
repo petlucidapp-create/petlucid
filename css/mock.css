@@ -337,7 +337,7 @@ html.dark .mock-glow::after {
     order: -1;
     margin-bottom: 8px;
   }
-  /* Mobilde parallax translateY de devre dışı — normal akışta kayar */
+  /* Mobilde parallax translateY devre dışı — normal akışla kayar */
   .sticky-flow__mock-col .mock-screen,
   .sticky-flow__mock-col .mock-carousel {
     transform: none !important;
