@@ -336,13 +336,24 @@
   function crossfadeToFrame(inner, frameId) {
     if (inner.dataset.currentFrame === frameId) return;
     inner.dataset.currentFrame = frameId;
-    inner.style.transition = 'opacity 220ms ease-out';
+    // Fade-out
+    inner.style.transition = 'opacity 180ms ease-out';
     inner.style.opacity = '0';
-    setTimeout(() => {
-      inner.innerHTML = buildMockFrameHTML(frameId);
-      fillMockFrame(inner);
-      inner.style.opacity = '1';
-    }, 200);
+    // DOM güncelleme: transition bitince, bir sonraki frame'de yap
+    // (setTimeout yerine transitionend + rAF — jank/titreme önler)
+    function onFadeOut() {
+      inner.removeEventListener('transitionend', onFadeOut);
+      requestAnimationFrame(() => {
+        inner.innerHTML = buildMockFrameHTML(frameId);
+        fillMockFrame(inner);
+        // Fade-in: layout hesaplandıktan sonra bir rAF daha bekle
+        requestAnimationFrame(() => {
+          inner.style.transition = 'opacity 200ms ease-in';
+          inner.style.opacity = '1';
+        });
+      });
+    }
+    inner.addEventListener('transitionend', onFadeOut, { once: true });
   }
 
   // -----------------------------------------------------------------------

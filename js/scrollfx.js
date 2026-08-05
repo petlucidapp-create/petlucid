@@ -86,6 +86,8 @@
   const MOCK_PARALLAX_MAX_PX = 9;
 
   function updateMockParallax() {
+    // Mobilde (≤900px) mock sticky değil, parallax transform uygulanmaz
+    if (window.innerWidth <= 900) return;
     const cols = document.querySelectorAll('.sticky-flow__mock-col');
     const viewportH = window.innerHeight || document.documentElement.clientHeight;
     cols.forEach((col) => {
