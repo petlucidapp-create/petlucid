@@ -218,6 +218,31 @@
   }
 
   // -------------------------------------------------------------------
+  // Üst-seviye "glass-card" accordion kartları (Kılavuzlar, ileride
+  // Evcil Hayvan Bilgileri vb.). Jenerik: [data-accordion] işaretli her
+  // .accordion-card için başlığa tıklanınca aç/kapa. Tek yerden bağlanır,
+  // yeni bir accordion kartı eklemek için sadece aynı HTML kalıbı
+  // kopyalanır — JS'e dokunmaya gerek kalmaz. Açık/kapalı durum body
+  // içinde tutulmaz (dil değişiminde render.js DOM'u sıfırdan kurar);
+  // bunun yerine data-accordion elemanının kendi .is-open class'ı esas
+  // alınır ve renderAll sonrası bu fonksiyon tekrar çağrılmaz çünkü
+  // .accordion-card kartları innerHTML ile silinmez (guideSection'ın
+  // dışında, statik HTML'de dururlar).
+  // -------------------------------------------------------------------
+  function initAccordionCards() {
+    document.querySelectorAll('[data-accordion]').forEach((card) => {
+      const header = card.querySelector('.accordion-card__header');
+      if (!header || header.dataset.bound) return;
+      header.dataset.bound = '1';
+      header.addEventListener('click', () => {
+        const willOpen = !card.classList.contains('is-open');
+        card.classList.toggle('is-open', willOpen);
+        header.setAttribute('aria-expanded', String(willOpen));
+      });
+    });
+  }
+
+  // -------------------------------------------------------------------
   // Kılavuz kartları — basılı tutma parıltısı (Madde 2). :active CSS
   // pseudo-class'ı touch cihazlarda scroll ile karışınca güvenilir
   // tetiklenmeyebiliyor; bu yüzden pointer olaylarıyla .is-pressed class'ı
@@ -295,6 +320,7 @@
     bindGuideNavigation();
     initCarouselNav();
     initCardPressGlow();
+    initAccordionCards();
 
     window.PLScrollFX.init();
   }

@@ -492,9 +492,12 @@
     const { ui } = global.PLI18n;
     document.getElementById('heroTitle').innerHTML = ui('heroTitle');
     document.getElementById('heroSubtitle').textContent = ui('heroSubtitle');
+    document.getElementById('guidesCardTitle').textContent = ui('guidesCardTitle');
     document.getElementById('catalogEyebrow').textContent = ui('catalogEyebrow');
     document.getElementById('catalogTitle').textContent = ui('catalogTitle');
     document.getElementById('catalogSubtitle').textContent = ui('catalogSubtitle');
+    document.getElementById('guideCarouselPrev').setAttribute('aria-label', ui('ariaPrev'));
+    document.getElementById('guideCarouselNext').setAttribute('aria-label', ui('ariaNext'));
     document.getElementById('footerTag').textContent = ui('footerTag');
     document.getElementById('footerCopyright').textContent = ui('footerCopyright');
     document.querySelectorAll('.btn-store .store-text small').forEach(s => s.textContent = ui('storeSoon'));

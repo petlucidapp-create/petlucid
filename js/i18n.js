@@ -34,6 +34,9 @@
       dataNote: 'Ekran içerikleri temsili verilerle hazırlanmıştır.',
       topicsIntro: 'Devamını okumak için bir konu seçin',
       stepLabel: 'Adım',
+      guidesCardTitle: 'Kılavuzlar',
+      ariaPrev: 'Önceki',
+      ariaNext: 'Sonraki',
     },
     en: {
       heroTitle: 'PetLucid: Your personal<br/>multi-pet tracking app.',
@@ -52,6 +55,9 @@
       dataNote: 'Screen content shown here uses placeholder data.',
       topicsIntro: 'Choose a topic to read more',
       stepLabel: 'Step',
+      guidesCardTitle: 'Guides',
+      ariaPrev: 'Previous',
+      ariaNext: 'Next',
     },
     de: {
       heroTitle: 'PetLucid: Ihre persönliche<br/>App zur Verwaltung mehrerer Haustiere.',
@@ -70,6 +76,9 @@
       dataNote: 'Die hier gezeigten Bildschirminhalte sind Platzhalterdaten.',
       topicsIntro: 'Wählen Sie ein Thema, um mehr zu erfahren',
       stepLabel: 'Schritt',
+      guidesCardTitle: 'Anleitungen',
+      ariaPrev: 'Zurück',
+      ariaNext: 'Weiter',
     },
     fr: {
       heroTitle: 'PetLucid : votre application<br/>personnelle de suivi multi-animaux.',
@@ -88,6 +97,9 @@
       dataNote: 'Le contenu des écrans affichés ici utilise des données fictives.',
       topicsIntro: 'Choisissez un sujet pour en savoir plus',
       stepLabel: 'Étape',
+      guidesCardTitle: 'Guides',
+      ariaPrev: 'Précédent',
+      ariaNext: 'Suivant',
     },
     es: {
       heroTitle: 'PetLucid: tu app personal<br/>de seguimiento multi-mascota.',
@@ -106,6 +118,9 @@
       dataNote: 'El contenido de las pantallas mostradas aquí usa datos ficticios.',
       topicsIntro: 'Elige un tema para saber más',
       stepLabel: 'Paso',
+      guidesCardTitle: 'Guías',
+      ariaPrev: 'Anterior',
+      ariaNext: 'Siguiente',
     },
     it: {
       heroTitle: 'PetLucid: la tua app personale<br/>per il monitoraggio multi-animale.',
@@ -124,6 +139,9 @@
       dataNote: 'I contenuti delle schermate mostrate qui usano dati fittizi.',
       topicsIntro: 'Scegli un argomento per saperne di più',
       stepLabel: 'Passo',
+      guidesCardTitle: 'Guide',
+      ariaPrev: 'Precedente',
+      ariaNext: 'Successivo',
     },
     pt: {
       heroTitle: 'PetLucid: seu app pessoal<br/>de acompanhamento multi-pet.',
@@ -142,6 +160,9 @@
       dataNote: 'O conteúdo das telas mostradas aqui usa dados fictícios.',
       topicsIntro: 'Escolha um tópico para saber mais',
       stepLabel: 'Passo',
+      guidesCardTitle: 'Guias',
+      ariaPrev: 'Anterior',
+      ariaNext: 'Próximo',
     },
     nl: {
       heroTitle: 'PetLucid: jouw persoonlijke<br/>app voor het volgen van meerdere huisdieren.',
@@ -160,6 +181,9 @@
       dataNote: 'De getoonde scherminhoud gebruikt fictieve gegevens.',
       topicsIntro: 'Kies een onderwerp om meer te lezen',
       stepLabel: 'Stap',
+      guidesCardTitle: 'Handleidingen',
+      ariaPrev: 'Vorige',
+      ariaNext: 'Volgende',
     },
     ru: {
       heroTitle: 'PetLucid — ваше личное приложение<br/>для учёта нескольких питомцев.',
@@ -178,6 +202,9 @@
       dataNote: 'Содержимое экранов здесь показано на примерных данных.',
       topicsIntro: 'Выберите тему, чтобы узнать больше',
       stepLabel: 'Шаг',
+      guidesCardTitle: 'Руководства',
+      ariaPrev: 'Назад',
+      ariaNext: 'Вперёд',
     },
     ja: {
       heroTitle: 'PetLucid：あなた専用の<br/>複数ペット管理アプリ。',
@@ -196,6 +223,9 @@
       dataNote: 'ここに表示されている画面内容はサンプルデータです。',
       topicsIntro: 'トピックを選んで詳しく見る',
       stepLabel: 'ステップ',
+      guidesCardTitle: 'ガイド',
+      ariaPrev: '前へ',
+      ariaNext: '次へ',
     },
     ko: {
       heroTitle: 'PetLucid: 나만의<br/>다중 반려동물 관리 앱.',
@@ -214,6 +244,9 @@
       dataNote: '여기에 표시된 화면 내용은 예시 데이터입니다.',
       topicsIntro: '더 알아보려면 주제를 선택하세요',
       stepLabel: '단계',
+      guidesCardTitle: '가이드',
+      ariaPrev: '이전',
+      ariaNext: '다음',
     },
     zh: {
       heroTitle: 'PetLucid：您专属的<br/>多宠物追踪应用。',
@@ -232,6 +265,9 @@
       dataNote: '此处显示的屏幕内容为示例数据。',
       topicsIntro: '选择一个主题以了解更多',
       stepLabel: '步骤',
+      guidesCardTitle: '指南',
+      ariaPrev: '上一个',
+      ariaNext: '下一个',
     },
     ar: {
       heroTitle: 'PetLucid: تطبيقك الشخصي<br/>لتتبع حيوانات أليفة متعددة.',
@@ -250,6 +286,9 @@
       dataNote: 'محتوى الشاشات المعروض هنا يستخدم بيانات توضيحية.',
       topicsIntro: 'اختر موضوعًا لقراءة المزيد',
       stepLabel: 'خطوة',
+      guidesCardTitle: 'الأدلة',
+      ariaPrev: 'السابق',
+      ariaNext: 'التالي',
     },
     pl: {
       heroTitle: 'PetLucid: Twoja osobista aplikacja<br/>do śledzenia wielu zwierząt.',
@@ -268,6 +307,9 @@
       dataNote: 'Treść ekranów pokazana tutaj to dane przykładowe.',
       topicsIntro: 'Wybierz temat, aby dowiedzieć się więcej',
       stepLabel: 'Krok',
+      guidesCardTitle: 'Przewodniki',
+      ariaPrev: 'Poprzedni',
+      ariaNext: 'Następny',
     },
     sv: {
       heroTitle: 'PetLucid: din personliga app<br/>för att hålla koll på flera husdjur.',
@@ -286,6 +328,9 @@
       dataNote: 'Skärminnehållet som visas här använder exempeldata.',
       topicsIntro: 'Välj ett ämne för att läsa mer',
       stepLabel: 'Steg',
+      guidesCardTitle: 'Guider',
+      ariaPrev: 'Föregående',
+      ariaNext: 'Nästa',
     },
     no: {
       heroTitle: 'PetLucid: din personlige app<br/>for oppfølging av flere kjæledyr.',
@@ -304,6 +349,9 @@
       dataNote: 'Skjerminnholdet som vises her bruker eksempeldata.',
       topicsIntro: 'Velg et emne for å lese mer',
       stepLabel: 'Steg',
+      guidesCardTitle: 'Veiledninger',
+      ariaPrev: 'Forrige',
+      ariaNext: 'Neste',
     },
     da: {
       heroTitle: 'PetLucid: din personlige app<br/>til at holde styr på flere kæledyr.',
@@ -322,6 +370,9 @@
       dataNote: 'Skærmindholdet, der vises her, bruger eksempeldata.',
       topicsIntro: 'Vælg et emne for at læse mere',
       stepLabel: 'Trin',
+      guidesCardTitle: 'Vejledninger',
+      ariaPrev: 'Forrige',
+      ariaNext: 'Næste',
     },
     fi: {
       heroTitle: 'PetLucid: henkilökohtainen sovelluksesi<br/>useamman lemmikin seurantaan.',
@@ -340,6 +391,9 @@
       dataNote: 'Tässä näytetty näyttöjen sisältö käyttää esimerkkitietoja.',
       topicsIntro: 'Valitse aihe lukeaksesi lisää',
       stepLabel: 'Vaihe',
+      guidesCardTitle: 'Oppaat',
+      ariaPrev: 'Edellinen',
+      ariaNext: 'Seuraava',
     },
     cs: {
       heroTitle: 'PetLucid: vaše osobní aplikace<br/>pro sledování více mazlíčků.',
@@ -358,6 +412,9 @@
       dataNote: 'Obsah obrazovek zobrazený zde používá ukázková data.',
       topicsIntro: 'Vyberte téma a přečtěte si více',
       stepLabel: 'Krok',
+      guidesCardTitle: 'Návody',
+      ariaPrev: 'Předchozí',
+      ariaNext: 'Další',
     },
     hu: {
       heroTitle: 'PetLucid: személyes alkalmazásod<br/>több kedvenc nyomon követéséhez.',
@@ -376,6 +433,9 @@
       dataNote: 'Az itt megjelenített képernyőtartalom minta adatokat használ.',
       topicsIntro: 'Válassz egy témát a bővebb olvasáshoz',
       stepLabel: 'Lépés',
+      guidesCardTitle: 'Útmutatók',
+      ariaPrev: 'Előző',
+      ariaNext: 'Következő',
     },
     ro: {
       heroTitle: 'PetLucid: aplicația ta personală<br/>pentru monitorizarea mai multor animale.',
@@ -394,6 +454,9 @@
       dataNote: 'Conținutul ecranelor afișat aici folosește date exemplificative.',
       topicsIntro: 'Alege un subiect pentru a citi mai mult',
       stepLabel: 'Pas',
+      guidesCardTitle: 'Ghiduri',
+      ariaPrev: 'Anterior',
+      ariaNext: 'Următorul',
     },
   };
 
