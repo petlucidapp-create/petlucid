@@ -149,8 +149,10 @@
     if (listWrap) listWrap.classList.remove('is-active');
     guideViewState.screen = screen;
     guideViewState.topic = topicId;
+    // Madde: alt kart (topic) tıklanınca sayfa YERİNDE kalır — kılavuzun
+    // başına scroll edilmez. Kullanıcı zaten o kılavuzun içinde; sadece
+    // tıkladığı içerik açılır, sayfa kıpırdamaz.
     revealNow(sectionEl);
-    scrollToSectionTop(sectionEl);
   }
 
   function showTopicList(screen) {
@@ -160,6 +162,8 @@
     const listWrap = sectionEl.querySelector('.topic-list-wrap');
     if (listWrap) listWrap.classList.add('is-active');
     guideViewState.topic = null;
+    // Madde: "konulara dön" da sayfayı kaydırmaz — kullanıcı hangi
+    // kartı görüyorsa listeye dönüşte de aynı konumda kalır.
   }
 
   // Dil değişiminden sonra (renderAll ile DOM sıfırdan kurulduğunda) aynı
