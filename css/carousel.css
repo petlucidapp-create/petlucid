@@ -253,6 +253,12 @@ html.dark .guide-card.is-pressed .guide-card__glow { opacity: 0.7; }
 }
 @media (max-width: 780px) {
   .guide-back { display: none; }
+  /* "Konulara dön" (topic → liste) butonu bu kuralın dışında tutulur:
+     Sağlık/Ayarlar gibi iki seviyeli kılavuzlarda, mobilde bir alt
+     karta (topic) girildiğinde geri dönecek hiçbir eşdeğer (guide-strip
+     burada gösterilmiyor) yoktu — kullanıcı listeye dönemiyordu.
+     Masaüstü davranışı bu bloğun dışında olduğu için değişmez. */
+  .guide-back--topic { display: inline-flex; }
   .guide-strip {
     display: flex;
     gap: 10px;
