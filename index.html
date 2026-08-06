@@ -95,23 +95,35 @@
      ============================================================ -->
 <section class="section" id="guideSection">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span> <span id="catalogEyebrow">PetLucid Kullanım Rehberi</span></span>
-      <h2 class="display-2" id="catalogTitle">Nereden başlamak istersiniz?</h2>
-      <p class="body-lg" id="catalogSubtitle">Her kart, uygulama içindeki ilgili ekranın tam kılavuzunu açar.</p>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="carousel-wrap reveal">
-      <div class="carousel-track scrollbar-none" id="guideCarousel"></div>
-      <div class="carousel-nav carousel-nav--desktop-only" id="guideCarouselNav">
-        <button class="carousel-nav-btn glass" id="guideCarouselPrev" aria-label="Önceki">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></svg>
-        </button>
-        <button class="carousel-nav-btn glass" id="guideCarouselNext" aria-label="Sonraki">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
-        </button>
+    <div class="glass-card accordion-card" id="guidesAccordion" data-accordion>
+      <button class="accordion-card__header" id="guidesAccordionToggle" aria-expanded="false" aria-controls="guidesAccordionBody">
+        <div class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></div>
+        <span class="accordion-card__title-wrap">
+          <span class="eyebrow" style="margin-bottom:2px;"><span class="dot"></span> <span id="catalogEyebrow"></span></span>
+          <span class="accordion-card__title" id="guidesCardTitle"></span>
+        </span>
+        <span class="accordion-card__chevron" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </span>
+      </button>
+      <div class="accordion-card__body" id="guidesAccordionBody">
+        <div class="accordion-card__body-inner">
+          <div class="section-head reveal">
+            <h2 class="display-2" id="catalogTitle"></h2>
+            <p class="body-lg" id="catalogSubtitle"></p>
+          </div>
+          <div class="carousel-wrap reveal">
+            <div class="carousel-track scrollbar-none" id="guideCarousel"></div>
+            <div class="carousel-nav carousel-nav--desktop-only" id="guideCarouselNav">
+              <button class="carousel-nav-btn glass" id="guideCarouselPrev">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></svg>
+              </button>
+              <button class="carousel-nav-btn glass" id="guideCarouselNext">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
