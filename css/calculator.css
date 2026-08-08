@@ -1,0 +1,425 @@
+/* ==========================================================================
+   PetLucid — Yem & Su Hesaplayıcı (Feed & Water Calculator)
+   Mevcut .glass-card.accordion-card kalıbının bir devamı olarak tasarlandı;
+   yeni bir "widget" gibi değil, sitenin ilk günden beri bir parçasıymış gibi
+   durması için glass.css / tokens.css'teki aynı gölge tarifi, aynı --r-*
+   radius'lar, aynı --ease-* eğrileri kullanılıyor. Reduced-motion zaten
+   base.css'te global olarak ele alınıyor, burada tekrar edilmiyor.
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------
+   Adım göstergesi (Hayvan seç → Bilgi gir) — accordion gövdesinin en üstünde
+   ------------------------------------------------------------------------- */
+.calc-stephead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.calc-stephead__back {
+  display: none; /* sadece form adımında görünür, JS ile .is-visible eklenir */
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px 8px 10px;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.calc-stephead__back:hover { background: var(--glass-bg-strong); color: var(--ink); }
+.calc-stephead__back.is-visible { display: inline-flex; }
+.calc-stephead__back svg { width: 15px; height: 15px; }
+
+/* -------------------------------------------------------------------------
+   Hayvan seçici — 12 kartlık responsive grid, guide-card ile aynı basınç/
+   parıltı davranışı (carousel.css'teki .guide-card:hover/:active/is-pressed
+   ile birebir aynı transform + glow tarifi, farklı bir class adı altında).
+   ------------------------------------------------------------------------- */
+.calc-step {
+  display: none;
+}
+.calc-step.is-active {
+  display: block;
+}
+
+.calc-animal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+}
+@media (max-width: 560px) {
+  .calc-animal-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}
+
+.calc-animal-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 12px;
+  border-radius: var(--r-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+  text-align: center;
+  font: inherit;
+  color: var(--ink);
+  transition: transform var(--dur-med) var(--ease-spring),
+              box-shadow var(--dur-med) var(--ease-out),
+              border-color var(--dur-med) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.calc-animal-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  background: var(--glass-bg-strong);
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--accent, var(--teal)) 20%, transparent);
+  border-color: color-mix(in srgb, var(--accent, var(--teal)) 35%, var(--glass-border));
+}
+.calc-animal-card:active,
+.calc-animal-card.is-pressed { transform: translateY(-1px) scale(0.97); }
+
+.calc-animal-card__glow {
+  position: absolute;
+  inset: -10%;
+  z-index: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 20%,
+    color-mix(in srgb, var(--accent, var(--teal)) 30%, transparent), transparent 65%);
+  filter: blur(22px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms var(--ease-out);
+}
+.calc-animal-card:active .calc-animal-card__glow,
+.calc-animal-card.is-pressed .calc-animal-card__glow { opacity: 0.8; }
+html.dark .calc-animal-card:active .calc-animal-card__glow,
+html.dark .calc-animal-card.is-pressed .calc-animal-card__glow { opacity: 0.65; }
+
+.calc-animal-card__icon {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--r-sm);
+  background: linear-gradient(160deg,
+    color-mix(in srgb, var(--accent, var(--teal)) 22%, transparent),
+    color-mix(in srgb, var(--accent, var(--teal)) 7%, transparent));
+  border: 1px solid color-mix(in srgb, var(--accent, var(--teal)) 24%, transparent);
+  color: var(--accent, var(--teal));
+}
+.calc-animal-card__icon svg { width: 26px; height: 26px; }
+
+.calc-animal-card__label {
+  position: relative;
+  z-index: 1;
+  font-size: 13.5px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+/* -------------------------------------------------------------------------
+   Form adımı — kilo (+ türe özel alanlar)
+   ------------------------------------------------------------------------- */
+.calc-form-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.calc-form-head__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-md);
+  background: linear-gradient(160deg,
+    color-mix(in srgb, var(--accent, var(--teal)) 20%, transparent),
+    color-mix(in srgb, var(--accent, var(--teal)) 6%, transparent));
+  border: 1px solid color-mix(in srgb, var(--accent, var(--teal)) 22%, transparent);
+  color: var(--accent, var(--teal));
+  flex-shrink: 0;
+}
+.calc-form-head__icon svg { width: 24px; height: 24px; }
+.calc-form-head__title { font-size: 18px; font-weight: 650; letter-spacing: -0.01em; }
+
+.calc-field {
+  margin-bottom: 18px;
+}
+.calc-field__label {
+  display: block;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+  letter-spacing: -0.005em;
+}
+.calc-field__input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--r-sm);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px; /* iOS zoom-on-focus'u engellemek için >=16px */
+  font-weight: 550;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
+}
+.calc-field__input::placeholder { color: var(--ink-faint); font-weight: 450; }
+.calc-field__input:focus {
+  outline: none;
+  background: var(--glass-bg-strong);
+  border-color: color-mix(in srgb, var(--accent, var(--teal)) 55%, var(--glass-border));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent, var(--teal)) 16%, transparent);
+}
+.calc-field__input.has-error {
+  border-color: color-mix(in srgb, var(--rose) 55%, var(--glass-border));
+}
+.calc-field__error {
+  display: none;
+  font-size: 12.5px;
+  font-weight: 550;
+  color: var(--rose);
+  margin-top: 7px;
+}
+.calc-field__error.is-visible { display: block; }
+
+/* Mama tipi — segmented toggle (sadece kedi/köpek formunda) */
+.calc-segmented {
+  display: flex;
+  gap: 6px;
+  padding: 5px;
+  border-radius: var(--r-sm);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+.calc-segmented__option {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: calc(var(--r-sm) - 5px);
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
+}
+.calc-segmented__option.is-active {
+  background: var(--bg-elevated);
+  color: var(--ink);
+  box-shadow: 0 2px 8px rgba(31,38,55,0.1);
+}
+html.dark .calc-segmented__option.is-active { box-shadow: 0 2px 8px rgba(0,0,0,0.35); }
+
+.calc-submit-btn {
+  width: 100%;
+  margin-top: 6px;
+  background: linear-gradient(180deg, var(--accent-2, var(--teal)), var(--accent, var(--teal)));
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--accent, var(--teal)) 38%, transparent);
+}
+.calc-submit-btn:hover {
+  box-shadow: 0 6px 22px color-mix(in srgb, var(--accent, var(--teal)) 48%, transparent);
+}
+
+/* -------------------------------------------------------------------------
+   Sonuç — Glass Alert (Modal)
+   Kodda hiçbir yerde modal/dialog paterni yoktu; glass-card'ın gölge +
+   sheen tarifi, fixed-overlay bir dialog'a uyarlandı. Sticky-positioning
+   tuzağından kaçınmak için transform tabanlı merkezleme kullanılıyor
+   (position:fixed + top/left:50% + translate, absolute-içinde-sticky
+   karışıklığı yok). prefers-reduced-motion base.css'te global ele alınıyor.
+   ------------------------------------------------------------------------- */
+.calc-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(10, 10, 12, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-med) var(--ease-out);
+}
+.calc-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.calc-alert {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 440px;
+  max-height: 86vh;
+  overflow-y: auto;
+  border-radius: var(--r-xl);
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(28px) saturate(1.7);
+  -webkit-backdrop-filter: blur(28px) saturate(1.7);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 24px 64px rgba(0,0,0,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.5),
+    inset 0 -1px 0 rgba(255,255,255,0.08),
+    inset 0 0 14px 7px rgba(255,255,255,0.35);
+  padding: 30px 26px 26px;
+  transform: scale(0.92) translateY(8px);
+  transition: transform var(--dur-med) var(--ease-spring);
+}
+html.dark .calc-alert {
+  box-shadow:
+    0 24px 64px rgba(0,0,0,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.14),
+    inset 0 -1px 0 rgba(255,255,255,0.04),
+    inset 0 0 14px 7px rgba(255,255,255,0.05);
+}
+.calc-overlay.is-open .calc-alert { transform: scale(1) translateY(0); }
+
+.calc-alert::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  pointer-events: none;
+}
+html.dark .calc-alert::before { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent); }
+
+.calc-alert__close {
+  position: absolute;
+  top: 18px;
+  inset-inline-end: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--ink-soft);
+  cursor: pointer;
+  z-index: 2;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.calc-alert__close:hover { background: var(--glass-bg-strong); color: var(--ink); }
+.calc-alert__close svg { width: 15px; height: 15px; }
+
+.calc-alert__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--r-md);
+  background: linear-gradient(160deg,
+    color-mix(in srgb, var(--accent, var(--teal)) 24%, transparent),
+    color-mix(in srgb, var(--accent, var(--teal)) 8%, transparent));
+  border: 1px solid color-mix(in srgb, var(--accent, var(--teal)) 26%, transparent);
+  color: var(--accent, var(--teal));
+  margin-bottom: 16px;
+}
+.calc-alert__icon svg { width: 28px; height: 28px; }
+
+.calc-alert__title {
+  font-size: 20px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.calc-alert__animal {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  font-weight: 550;
+  margin-bottom: 20px;
+}
+
+.calc-alert__results {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+@media (max-width: 380px) {
+  .calc-alert__results { grid-template-columns: 1fr; }
+}
+.calc-alert__result-card {
+  padding: 16px 14px;
+  border-radius: var(--r-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+.calc-alert__result-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+.calc-alert__result-label svg { width: 13px; height: 13px; }
+.calc-alert__result-value {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.calc-alert__result-range {
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.calc-alert__notes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--hairline);
+}
+.calc-alert__note {
+  display: flex;
+  gap: 10px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.calc-alert__note svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--accent, var(--teal));
+}
+.calc-alert__note--warning svg { color: var(--amber); }
+
+.calc-alert__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+.calc-alert__actions .btn { flex: 1; padding: 12px 18px; font-size: 14px; }
