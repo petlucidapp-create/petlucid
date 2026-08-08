@@ -325,6 +325,7 @@
     initCarouselNav();
     initCardPressGlow();
     initAccordionCards();
+    if (window.PLCalculator) window.PLCalculator.init();
 
     window.PLScrollFX.init();
   }
