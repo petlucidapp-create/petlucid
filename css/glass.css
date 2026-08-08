@@ -312,11 +312,41 @@ html.dark .accordion-card__header:hover {
 .accordion-card__body-inner {
   overflow: hidden;
   min-height: 0;
+  /* Header ile aynı 26px yatay boşluk: içerik (carousel, animal-grid, vb.)
+     artık kartın camsı kenarına hiç değmiyor, header'ın sol/sağ hizasıyla
+     birebir örtüşüyor — böylece başlık şeridiyle gövde, aralarında görünür
+     bir kırılma olmadan tek bir yüzeymiş gibi akıyor. Üstte 0: section-head
+     ve calc-stephead kendi üst boşluklarını zaten taşıyor. */
+  padding: 0 26px 26px;
+}
+@media (max-width: 640px) {
+  .accordion-card__body-inner { padding: 0 20px 20px; }
 }
 
 /* Guide section-head, glass-card gövdesi içinde: dış section'daki geniş
-   üst boşluk yerine karta uygun, kompakt bir üst boşluk kullanılır. */
+   üst boşluk yerine karta uygun, kompakt bir üst boşluk kullanılır.
+   Yatay boşluk artık body-inner'dan geldiği için burada tekrarlanmıyor. */
 .accordion-card__body-inner .section-head {
-  padding: 4px 26px 0;
+  padding: 4px 0 0;
   margin: 0 auto 36px;
+}
+
+/* carousel-track, .section > .container gibi tam-genişlik bağlamlar için
+   -24px negatif margin ile viewport kenarına taşacak şekilde tasarlandı.
+   Accordion gövdesi içinde referans artık .container değil, kendi 26px'lik
+   body-inner padding'i — o yüzden burada negatif margin sıfırlanır ve
+   track kendi ebeveyninin (zaten boşluklu) genişliğine oturur; ilk/son
+   kart kartın kenarına değil, header'ın hizasına yaslanır. */
+.accordion-card__body-inner .carousel-track {
+  margin: 0;
+  padding: 8px 0 8px;
+  scroll-padding-left: 0;
+}
+.accordion-card__body-inner .carousel-wrap {
+  margin: 0 -26px;
+  padding: 0 26px;
+  overflow: hidden;
+}
+@media (max-width: 640px) {
+  .accordion-card__body-inner .carousel-wrap { margin: 0 -20px; padding: 0 20px; }
 }
