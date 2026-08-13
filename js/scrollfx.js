@@ -132,17 +132,22 @@
   }
 
   // -------------------------------------------------------------------
-  // Mobil Mock Carousel — Coverflow (Madde 3) — seçili mock öne/büyük,
-  // yanlardakiler arkada/küçük. Her track'in KENDİ scroll event'i dinlenir
-  // (yatay iç scroll, sayfa scroll'undan bağımsız); her slaytın track
-  // merkezine olan uzaklığı slayt genişliğine oranlanarak --pl-dist'e yazılır.
+  // Coverflow — Mobil Mock Carousel (Madde 3) + Masaüstü/Mobil App Showcase
+  // şeridi. Ortadaki slayt öne/büyük, yanlardakiler arkada/küçük. Her
+  // track'in KENDİ scroll event'i dinlenir (yatay iç scroll, sayfa
+  // scroll'undan bağımsız); her slaytın track merkezine olan uzaklığı
+  // slayt genişliğine oranlanarak --pl-dist'e yazılır. İki farklı slayt
+  // sınıfı (.mock-carousel__slide, .showcase-carousel__slide) aynı
+  // mekanizmayı paylaşır — hangisi geçerliyse track içinde o seçilir.
   // -------------------------------------------------------------------
   const coverflowTracks = new Set();
+  const COVERFLOW_SLIDE_SELECTOR = '.mock-carousel__slide, .showcase-carousel__slide';
+  const COVERFLOW_TRACK_SELECTOR = '.mock-carousel__track, .showcase-carousel__track';
 
   function updateCoverflowTrack(track) {
     const trackRect = track.getBoundingClientRect();
     const trackCenter = trackRect.left + trackRect.width / 2;
-    const slides = track.querySelectorAll('.mock-carousel__slide');
+    const slides = track.querySelectorAll(COVERFLOW_SLIDE_SELECTOR);
     slides.forEach((slide) => {
       const r = slide.getBoundingClientRect();
       const slideCenter = r.left + r.width / 2;
@@ -173,7 +178,7 @@
   }
 
   function initCoverflow() {
-    document.querySelectorAll('.mock-carousel__track').forEach(registerCoverflowTrack);
+    document.querySelectorAll(COVERFLOW_TRACK_SELECTOR).forEach(registerCoverflowTrack);
   }
 
   function refreshCoverflow() {
