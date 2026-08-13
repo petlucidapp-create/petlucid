@@ -92,6 +92,34 @@
 </section>
 
 <!-- ============================================================
+     APP SHOWCASE — Store screenshot'ları, coverflow şerit
+     Hero'nun hemen devamı, Kılavuzlar kartından önce. Accordion DEĞİL,
+     her zaman açık; masaüstünde de mobildeki .mock-carousel coverflow
+     mantığı (scrollfx.js registerCoverflowTrack) aktif olacak şekilde
+     .showcase-carousel__track kullanır (bkz. css/carousel.css).
+     ============================================================ -->
+<section class="section" id="showcaseSection" style="padding-top:24px;padding-bottom:64px;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span> <span id="showcaseEyebrow"></span></span>
+      <h2 class="display-2" id="showcaseTitle"></h2>
+      <p class="body-lg" id="showcaseSubtitle"></p>
+    </div>
+    <div class="carousel-wrap reveal">
+      <div class="showcase-carousel__track scrollbar-none" id="showcaseCarousel"></div>
+      <div class="carousel-nav carousel-nav--desktop-only" id="showcaseCarouselNav">
+        <button class="carousel-nav-btn glass" id="showcaseCarouselPrev" aria-label="">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></svg>
+        </button>
+        <button class="carousel-nav-btn glass" id="showcaseCarouselNext" aria-label="">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      GUIDE CATEGORY CAROUSEL
      ============================================================ -->
 <section class="section" id="guideSection">
