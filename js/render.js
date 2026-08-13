@@ -61,6 +61,66 @@
     applyUIStrings(track);
   }
 
+  // -----------------------------------------------------------------------
+  // App Showcase Carousel — hero altındaki store screenshot şeridi.
+  // 6 sabit görsel, assets/showcase/<id>.png yolunda beklenir. Dosya henüz
+  // konmadıysa mockscreens.js'teki ile aynı "sırayla uzantı dene, hepsi
+  // olmazsa placeholder göster" davranışı burada da geçerli (bkz.
+  // handleShowcaseImgError). Alt metinleri her dilde showcase.items.<id>
+  // guides.json'da YOKTUR — kısa, sabit bir liste burada tutulur ve ui()
+  // üzerinden değil, doğrudan bu dosyada TR/EN + fallback ile çözülür,
+  // çünkü bu sadece <img alt> için, görünür metin değil.
+  // -----------------------------------------------------------------------
+  const SHOWCASE_PATH = 'assets/showcase/';
+  const SHOWCASE_EXT_CANDIDATES = ['png', 'jpg', 'jpeg', 'webp'];
+  const SHOWCASE_ITEMS = [
+    { id: 'home', alt: 'Home' },
+    { id: 'health', alt: 'Health' },
+    { id: 'prescription', alt: 'Prescription' },
+    { id: 'reminders', alt: 'Reminders' },
+    { id: 'pdf', alt: 'PDF Report' },
+    { id: 'bulk', alt: 'Bulk Entry' },
+  ];
+
+  function handleShowcaseImgError(imgEl) {
+    const id = imgEl.getAttribute('data-showcase-id');
+    let idx = parseInt(imgEl.getAttribute('data-try-idx'), 10) + 1;
+    if (idx < SHOWCASE_EXT_CANDIDATES.length) {
+      imgEl.setAttribute('data-try-idx', String(idx));
+      imgEl.src = `${SHOWCASE_PATH}${id}.${SHOWCASE_EXT_CANDIDATES[idx]}`;
+    } else {
+      const wrap = imgEl.closest('.showcase-carousel__slide');
+      if (wrap) wrap.classList.add('is-placeholder');
+    }
+  }
+  global.__plHandleShowcaseImgError = handleShowcaseImgError;
+
+  function renderShowcaseCarousel() {
+    const track = document.getElementById('showcaseCarousel');
+    if (!track) return;
+    track.innerHTML = '';
+    SHOWCASE_ITEMS.forEach((item) => {
+      const fileBase = SHOWCASE_PATH + item.id;
+      const slide = el(`
+        <div class="showcase-carousel__slide">
+          <img
+            alt="${item.alt}"
+            data-showcase-id="${item.id}"
+            data-try-idx="0"
+            onerror="window.__plHandleShowcaseImgError(this)"
+            src="${fileBase}.${SHOWCASE_EXT_CANDIDATES[0]}"
+          />
+          <div class="showcase-carousel__placeholder">
+            ${I('ImageOff', { size: 24 })}
+            <span>${item.id}.png</span>
+          </div>
+        </div>
+      `);
+      track.appendChild(slide);
+    });
+    if (global.PLScrollFX) global.PLScrollFX.refreshCoverflow();
+  }
+
   function renderPillNav(containerId) {
     const { t, meta } = global.PLI18n;
     const m = meta();
@@ -498,6 +558,11 @@
     document.getElementById('catalogSubtitle').textContent = ui('catalogSubtitle');
     document.getElementById('guideCarouselPrev').setAttribute('aria-label', ui('ariaPrev'));
     document.getElementById('guideCarouselNext').setAttribute('aria-label', ui('ariaNext'));
+    document.getElementById('showcaseEyebrow').textContent = ui('showcaseEyebrow');
+    document.getElementById('showcaseTitle').textContent = ui('showcaseTitle');
+    document.getElementById('showcaseSubtitle').textContent = ui('showcaseSubtitle');
+    document.getElementById('showcaseCarouselPrev').setAttribute('aria-label', ui('ariaPrev'));
+    document.getElementById('showcaseCarouselNext').setAttribute('aria-label', ui('ariaNext'));
     document.getElementById('footerTag').textContent = ui('footerTag');
     document.getElementById('footerCopyright').textContent = ui('footerCopyright');
     document.querySelectorAll('.btn-store .store-text small').forEach(s => s.textContent = ui('storeSoon'));
@@ -506,6 +571,7 @@
   function renderAll() {
     renderStaticUIText();
     renderCarousel();
+    renderShowcaseCarousel();
     renderPillNav('heroPillNav');
     renderPillNav('footerPillNav');
     renderAllGuideDetails();
@@ -514,6 +580,7 @@
   global.PLRender = {
     renderAll,
     renderCarousel,
+    renderShowcaseCarousel,
     renderAllGuideDetails,
     crossfadeToFrame,
     applyUIStrings,
