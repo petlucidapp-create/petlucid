@@ -308,3 +308,81 @@ html.dark .guide-card.is-pressed .guide-card__glow { opacity: 0.7; }
   border-color: color-mix(in srgb, var(--accent, var(--blue)) 40%, var(--glass-border));
   color: var(--ink);
 }
+
+/* -------------------------------------------------------------------------
+   App Showcase Carousel — store screenshot şeridi (hero altı, kılavuzlardan
+   önce). .mock-carousel'deki coverflow mantığının (--pl-dist ile scale +
+   opacity, bkz. css/mock.css) AYNISI, ama iki farkla:
+   1) Mobilde DEĞİL, hem mobil hem masaüstünde aktif (mock-carousel sadece
+      ≤900px'te görünür; bu şerit her zaman görünür).
+   2) Masaüstünde ok butonlarıyla (carousel-nav-btn) adım adım kaydırılır,
+      kılavuz carousel'indeki .carousel-track'in aksine coverflow (ortadaki
+      kart net/büyük, yanlar küçük/soluk) etkisi masaüstünde de sürer.
+   Görseller çerçevesiz (bezel yok) — store screenshot'ları zaten kendi
+   kompozisyonunu taşıyor, kart sadece hafif bir cam gölgesiyle çevreler.
+   ------------------------------------------------------------------------- */
+.showcase-carousel__track {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 12px;
+  padding: 8px 12px 28px;
+  margin: 0 -12px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.showcase-carousel__track::-webkit-scrollbar { display: none; }
+
+.showcase-carousel__slide {
+  position: relative;
+  flex: 0 0 82%;
+  scroll-snap-align: center;
+  transform-origin: center center;
+  --pl-dist: 0;
+  --pl-z: 10;
+  transform: scale(calc(1 - min(var(--pl-dist), 1) * 0.16));
+  opacity: calc(1 - min(var(--pl-dist), 1) * 0.45);
+  z-index: var(--pl-z);
+  transition: transform 160ms var(--ease-out), opacity 160ms var(--ease-out);
+  will-change: transform, opacity;
+}
+
+@media (min-width: 640px) {
+  .showcase-carousel__slide { flex-basis: 340px; }
+}
+@media (min-width: 900px) {
+  .showcase-carousel__slide { flex-basis: 300px; }
+}
+@media (min-width: 1180px) {
+  .showcase-carousel__slide { flex-basis: 320px; }
+}
+
+/* Görselin kendisi: çerçevesiz, sade cam kart. Store screenshot dikey
+   (9:16'ya yakın) olduğu için oranı görselin kendisine bırakıyoruz —
+   sabit bir aspect-ratio zorlamıyoruz, PNG kendi kompozisyon boşluğunu
+   (üstteki başlık, alttaki karakterler) getiriyor. */
+.showcase-carousel__slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-lg);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Coverflow'da ortadaki (dist~0) slaytın hafif ışıltısı — mock-carousel'deki
+   --pl-glow ile aynı dil, kartın altında yumuşak bir accent parıltısı. */
+.showcase-carousel__slide::after {
+  content: '';
+  position: absolute;
+  inset: -14% -10% -6%;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 50% 30%,
+    color-mix(in srgb, var(--accent, var(--blue)) 24%, transparent), transparent 70%);
+  opacity: var(--pl-glow, 0);
+  filter: blur(28px);
+  pointer-events: none;
+  transition: opacity 160ms var(--ease-out);
+}
