@@ -269,16 +269,19 @@
   }
 
   // -------------------------------------------------------------------
-  // Guide carousel — masaüstü ok navigasyonu (Apple.com tarzı)
+  // Carousel — masaüstü ok navigasyonu (Apple.com tarzı)
+  // Genel amaçlı: hem Kılavuzlar carousel'i (.carousel-item) hem App
+  // Showcase coverflow şeridi (.showcase-carousel__slide) için kullanılır;
+  // sadece slide seçicisi ve track/buton id'leri değişir.
   // -------------------------------------------------------------------
-  function initCarouselNav() {
-    const track = document.getElementById('guideCarousel');
-    const prevBtn = document.getElementById('guideCarouselPrev');
-    const nextBtn = document.getElementById('guideCarouselNext');
+  function initCarouselNavFor(trackId, prevId, nextId, slideSelector) {
+    const track = document.getElementById(trackId);
+    const prevBtn = document.getElementById(prevId);
+    const nextBtn = document.getElementById(nextId);
     if (!track || !prevBtn || !nextBtn) return;
 
     function cardStep() {
-      const item = track.querySelector('.carousel-item');
+      const item = track.querySelector(slideSelector);
       if (!item) return track.clientWidth * 0.8;
       const style = getComputedStyle(track);
       const gap = parseFloat(style.columnGap || style.gap || '20');
@@ -300,6 +303,11 @@
     track.addEventListener('scroll', updateButtons, { passive: true });
     window.addEventListener('resize', updateButtons);
     updateButtons();
+  }
+
+  function initCarouselNav() {
+    initCarouselNavFor('guideCarousel', 'guideCarouselPrev', 'guideCarouselNext', '.carousel-item');
+    initCarouselNavFor('showcaseCarousel', 'showcaseCarouselPrev', 'showcaseCarouselNext', '.showcase-carousel__slide');
   }
 
   async function boot() {
