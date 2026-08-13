@@ -37,6 +37,9 @@
       guidesCardTitle: 'Kılavuzlar',
       ariaPrev: 'Önceki',
       ariaNext: 'Sonraki',
+      showcaseEyebrow: 'Uygulamadan Görüntüler',
+      showcaseTitle: 'Uygulamada sizi neler bekliyor?',
+      showcaseSubtitle: 'PetLucid\'in gerçek ekranlarına göz atın.',
     },
     en: {
       heroTitle: 'PetLucid: Your personal<br/>multi-pet tracking app.',
@@ -58,6 +61,9 @@
       guidesCardTitle: 'Guides',
       ariaPrev: 'Previous',
       ariaNext: 'Next',
+      showcaseEyebrow: 'App Showcase',
+      showcaseTitle: 'See what\'s waiting for you in the app',
+      showcaseSubtitle: 'A closer look at the real screens of PetLucid.',
     },
     de: {
       heroTitle: 'PetLucid: Ihre persönliche<br/>App zur Verwaltung mehrerer Haustiere.',
@@ -79,6 +85,9 @@
       guidesCardTitle: 'Anleitungen',
       ariaPrev: 'Zurück',
       ariaNext: 'Weiter',
+      showcaseEyebrow: 'Einblicke in die App',
+      showcaseTitle: 'Was erwartet Sie in der App?',
+      showcaseSubtitle: 'Ein Blick auf die echten Bildschirme von PetLucid.',
     },
     fr: {
       heroTitle: 'PetLucid : votre application<br/>personnelle de suivi multi-animaux.',
@@ -100,6 +109,9 @@
       guidesCardTitle: 'Guides',
       ariaPrev: 'Précédent',
       ariaNext: 'Suivant',
+      showcaseEyebrow: 'Aperçu de l\'application',
+      showcaseTitle: 'Qu\'est-ce qui vous attend dans l\'application ?',
+      showcaseSubtitle: 'Un aperçu des véritables écrans de PetLucid.',
     },
     es: {
       heroTitle: 'PetLucid: tu app personal<br/>de seguimiento multi-mascota.',
@@ -121,6 +133,9 @@
       guidesCardTitle: 'Guías',
       ariaPrev: 'Anterior',
       ariaNext: 'Siguiente',
+      showcaseEyebrow: 'Vistazo a la app',
+      showcaseTitle: '¿Qué te espera dentro de la app?',
+      showcaseSubtitle: 'Un vistazo a las pantallas reales de PetLucid.',
     },
     it: {
       heroTitle: 'PetLucid: la tua app personale<br/>per il monitoraggio multi-animale.',
@@ -142,6 +157,9 @@
       guidesCardTitle: 'Guide',
       ariaPrev: 'Precedente',
       ariaNext: 'Successivo',
+      showcaseEyebrow: 'Anteprima dell\'app',
+      showcaseTitle: 'Cosa ti aspetta nell\'app?',
+      showcaseSubtitle: 'Uno sguardo alle vere schermate di PetLucid.',
     },
     pt: {
       heroTitle: 'PetLucid: seu app pessoal<br/>de acompanhamento multi-pet.',
@@ -163,6 +181,9 @@
       guidesCardTitle: 'Guias',
       ariaPrev: 'Anterior',
       ariaNext: 'Próximo',
+      showcaseEyebrow: 'Vitrine do aplicativo',
+      showcaseTitle: 'O que espera por você no aplicativo?',
+      showcaseSubtitle: 'Um olhar sobre as telas reais do PetLucid.',
     },
     nl: {
       heroTitle: 'PetLucid: jouw persoonlijke<br/>app voor het volgen van meerdere huisdieren.',
@@ -184,6 +205,9 @@
       guidesCardTitle: 'Handleidingen',
       ariaPrev: 'Vorige',
       ariaNext: 'Volgende',
+      showcaseEyebrow: 'App-vooruitblik',
+      showcaseTitle: 'Wat wacht je in de app?',
+      showcaseSubtitle: 'Een blik op de echte schermen van PetLucid.',
     },
     ru: {
       heroTitle: 'PetLucid — ваше личное приложение<br/>для учёта нескольких питомцев.',
@@ -205,6 +229,9 @@
       guidesCardTitle: 'Руководства',
       ariaPrev: 'Назад',
       ariaNext: 'Вперёд',
+      showcaseEyebrow: 'Витрина приложения',
+      showcaseTitle: 'Что вас ждёт в приложении?',
+      showcaseSubtitle: 'Взгляните на настоящие экраны PetLucid.',
     },
     ja: {
       heroTitle: 'PetLucid：あなた専用の<br/>複数ペット管理アプリ。',
@@ -226,6 +253,9 @@
       guidesCardTitle: 'ガイド',
       ariaPrev: '前へ',
       ariaNext: '次へ',
+      showcaseEyebrow: 'アプリのショーケース',
+      showcaseTitle: 'アプリの中には何が待っていますか？',
+      showcaseSubtitle: 'PetLucidの実際の画面をご覧ください。',
     },
     ko: {
       heroTitle: 'PetLucid: 나만의<br/>다중 반려동물 관리 앱.',
@@ -247,6 +277,9 @@
       guidesCardTitle: '가이드',
       ariaPrev: '이전',
       ariaNext: '다음',
+      showcaseEyebrow: '앱 미리보기',
+      showcaseTitle: '앱에서 무엇을 만나게 될까요?',
+      showcaseSubtitle: 'PetLucid의 실제 화면을 확인해 보세요.',
     },
     zh: {
       heroTitle: 'PetLucid：您专属的<br/>多宠物追踪应用。',
@@ -268,6 +301,9 @@
       guidesCardTitle: '指南',
       ariaPrev: '上一个',
       ariaNext: '下一个',
+      showcaseEyebrow: '应用展示',
+      showcaseTitle: '应用中有哪些精彩内容？',
+      showcaseSubtitle: '一览 PetLucid 的真实界面。',
     },
     ar: {
       heroTitle: 'PetLucid: تطبيقك الشخصي<br/>لتتبع حيوانات أليفة متعددة.',
@@ -289,6 +325,9 @@
       guidesCardTitle: 'الأدلة',
       ariaPrev: 'السابق',
       ariaNext: 'التالي',
+      showcaseEyebrow: 'لمحة عن التطبيق',
+      showcaseTitle: 'ماذا ينتظرك داخل التطبيق؟',
+      showcaseSubtitle: 'نظرة على الشاشات الحقيقية لتطبيق PetLucid.',
     },
     pl: {
       heroTitle: 'PetLucid: Twoja osobista aplikacja<br/>do śledzenia wielu zwierząt.',
@@ -310,6 +349,9 @@
       guidesCardTitle: 'Przewodniki',
       ariaPrev: 'Poprzedni',
       ariaNext: 'Następny',
+      showcaseEyebrow: 'Podgląd aplikacji',
+      showcaseTitle: 'Co czeka na Ciebie w aplikacji?',
+      showcaseSubtitle: 'Zobacz prawdziwe ekrany PetLucid.',
     },
     sv: {
       heroTitle: 'PetLucid: din personliga app<br/>för att hålla koll på flera husdjur.',
@@ -331,6 +373,9 @@
       guidesCardTitle: 'Guider',
       ariaPrev: 'Föregående',
       ariaNext: 'Nästa',
+      showcaseEyebrow: 'Inblick i appen',
+      showcaseTitle: 'Vad väntar dig i appen?',
+      showcaseSubtitle: 'En titt på PetLucids riktiga skärmar.',
     },
     no: {
       heroTitle: 'PetLucid: din personlige app<br/>for oppfølging av flere kjæledyr.',
@@ -352,6 +397,9 @@
       guidesCardTitle: 'Veiledninger',
       ariaPrev: 'Forrige',
       ariaNext: 'Neste',
+      showcaseEyebrow: 'Innblikk i appen',
+      showcaseTitle: 'Hva venter deg i appen?',
+      showcaseSubtitle: 'Et blikk på de virkelige skjermene til PetLucid.',
     },
     da: {
       heroTitle: 'PetLucid: din personlige app<br/>til at holde styr på flere kæledyr.',
@@ -373,6 +421,9 @@
       guidesCardTitle: 'Vejledninger',
       ariaPrev: 'Forrige',
       ariaNext: 'Næste',
+      showcaseEyebrow: 'Indblik i appen',
+      showcaseTitle: 'Hvad venter dig i appen?',
+      showcaseSubtitle: 'Et kig på PetLucids rigtige skærme.',
     },
     fi: {
       heroTitle: 'PetLucid: henkilökohtainen sovelluksesi<br/>useamman lemmikin seurantaan.',
@@ -394,6 +445,9 @@
       guidesCardTitle: 'Oppaat',
       ariaPrev: 'Edellinen',
       ariaNext: 'Seuraava',
+      showcaseEyebrow: 'Sovelluksen esittely',
+      showcaseTitle: 'Mitä sovelluksessa odottaa sinua?',
+      showcaseSubtitle: 'Katso PetLucidin todellisia näyttöjä.',
     },
     cs: {
       heroTitle: 'PetLucid: vaše osobní aplikace<br/>pro sledování více mazlíčků.',
@@ -415,6 +469,9 @@
       guidesCardTitle: 'Návody',
       ariaPrev: 'Předchozí',
       ariaNext: 'Další',
+      showcaseEyebrow: 'Náhled aplikace',
+      showcaseTitle: 'Co na vás čeká v aplikaci?',
+      showcaseSubtitle: 'Podívejte se na skutečné obrazovky PetLucid.',
     },
     hu: {
       heroTitle: 'PetLucid: személyes alkalmazásod<br/>több kedvenc nyomon követéséhez.',
@@ -436,6 +493,9 @@
       guidesCardTitle: 'Útmutatók',
       ariaPrev: 'Előző',
       ariaNext: 'Következő',
+      showcaseEyebrow: 'Betekintés az appba',
+      showcaseTitle: 'Mi vár rád az alkalmazásban?',
+      showcaseSubtitle: 'Vess egy pillantást a PetLucid valódi képernyőire.',
     },
     ro: {
       heroTitle: 'PetLucid: aplicația ta personală<br/>pentru monitorizarea mai multor animale.',
@@ -457,6 +517,9 @@
       guidesCardTitle: 'Ghiduri',
       ariaPrev: 'Anterior',
       ariaNext: 'Următorul',
+      showcaseEyebrow: 'Prezentarea aplicației',
+      showcaseTitle: 'Ce te așteaptă în aplicație?',
+      showcaseSubtitle: 'O privire asupra ecranelor reale din PetLucid.',
     },
   };
 
