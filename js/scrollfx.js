@@ -215,6 +215,24 @@
   }
 
   // -------------------------------------------------------------------
+  // Border Beam — [data-beam] kartları ekran dışındayken animasyonu
+  // durdurur (GPU/pil tasarrufu). reveal observer'dan farklı olarak
+  // unobserve YAPMAZ — kart tekrar ekrana girip çıktıkça sürekli
+  // aç/kapa yapması gerekiyor.
+  // -------------------------------------------------------------------
+  function setupBeamObserver() {
+    const targets = document.querySelectorAll('[data-beam]');
+    if (!targets.length) return null;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('is-offscreen', !entry.isIntersecting);
+      });
+    }, { threshold: 0.01 });
+    targets.forEach((elm) => io.observe(elm));
+    return io;
+  }
+
+  // -------------------------------------------------------------------
   // Header scrolled state + back-to-top visibility
   // -------------------------------------------------------------------
   function updateChrome() {
@@ -239,6 +257,7 @@
 
   function init() {
     global.__plRevealIO = setupRevealObserver();
+    setupBeamObserver();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
     onScroll();

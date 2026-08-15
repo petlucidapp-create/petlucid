@@ -548,9 +548,17 @@
     });
   }
 
+  // "PetLucid" kelimesini shimmer span'ıyla sarar — 21 dilin hepsinde
+  // başlık "PetLucid" ile başladığı için i18n string'lerine dokunmadan,
+  // render sonrası tek bir yerde uygulanıyor. Marka adı geçmiyorsa
+  // (ör. ileride eklenecek bir dilde) metin olduğu gibi kalır, hata vermez.
+  function wrapBrandShimmer(html) {
+    return html.replace(/PetLucid/, '<span class="hero__title-shimmer">PetLucid</span>');
+  }
+
   function renderStaticUIText() {
     const { ui } = global.PLI18n;
-    document.getElementById('heroTitle').innerHTML = ui('heroTitle');
+    document.getElementById('heroTitle').innerHTML = wrapBrandShimmer(ui('heroTitle'));
     document.getElementById('heroSubtitle').textContent = ui('heroSubtitle');
     document.getElementById('guidesCardTitle').textContent = ui('guidesCardTitle');
     document.getElementById('catalogEyebrow').textContent = ui('catalogEyebrow');
