@@ -250,6 +250,47 @@ html.dark .hero__glow-blob {
   max-width: 780px;
 }
 
+/* -------------------------------------------------------------------------
+   Gradient Shimmer — başlıktaki vurgu kelimesinin üzerinden geçen ince
+   parlaklık huzmesi. Metin rengini kalıcı değiştirmez (gerçek DOM metni,
+   seçilebilir/okunabilir kalır) — sadece background-clip:text ile taşınan
+   bir gradient band, periyodik olarak soldan sağa süpürüyor gibi kayar.
+   Sürekli/agresif değil: geniş bir "idle" boşluğu var (bkz. duration'daki
+   %70'lik boş segment), bu yüzden çoğu zaman düz --ink renginde durur ve
+   sadece arada bir hafifçe parlar.
+   ------------------------------------------------------------------------- */
+.hero__title-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    var(--ink) 40%,
+    var(--blue-2) 46%,
+    var(--liquid-blue-3, var(--blue-2)) 50%,
+    var(--blue-2) 54%,
+    var(--ink) 60%
+  );
+  background-size: 250% 100%;
+  background-position: 200% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: hero-shimmer 4.5s ease-in-out infinite;
+  animation-delay: 1.6s; /* hero-icon-in / başlık giriş animasyonundan sonra başlasın */
+}
+@keyframes hero-shimmer {
+  0%   { background-position: 200% 0; }
+  28%  { background-position: -20% 0; }
+  100% { background-position: -20% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__title-shimmer {
+    animation: none;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    color: var(--ink);
+  }
+}
+
 .hero__subtitle {
   max-width: 560px;
 }

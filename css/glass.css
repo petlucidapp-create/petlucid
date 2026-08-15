@@ -228,6 +228,66 @@ html.dark .glass-card::before { background: linear-gradient(90deg, transparent, 
 html.dark .glass-card::after  { background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), transparent, rgba(255, 255, 255, 0.08)); }
 
 /* -------------------------------------------------------------------------
+   Border Beam — kenarda dönen ince ışık yayı.
+   Seçici kullanım: sadece [data-beam] attribute'u olan .glass-card'larda
+   aktif olur (her karta değil — tek bir vurgu öğesi için). Teknik: kartın
+   üstüne kartla aynı köşe yarıçapına sahip, aria-hidden bir "rim" katmanı
+   biner; bu rim mask-composite ile sadece ince bir kenar şeridini gösterir,
+   içinde de panelin ölçüsünden büyük tutulmuş bir conic-gradient kare döner.
+   Maske sadece kenarı ortaya çıkardığı için göz "sınırı takip eden parlak
+   bir yay" görür — kartın kendi arka planı/rengi hiç değişmez.
+   Dark/light: --blue token'ı zaten html.dark altında daha parlak bir mavi
+   olarak tanımlı (tokens.css), o yüzden burada ayrı bir dark override'a
+   gerek yok — accent otomatik uyarlanır.
+   Erişilebilirlik: prefers-reduced-motion'da hiç render edilmez (dönmez,
+   DOM'da bile yer kaplamaz gibi davranır — opacity:0), IntersectionObserver
+   ile ekran dışındayken (.is-offscreen) durur — bkz. js/scrollfx.js.
+   ------------------------------------------------------------------------- */
+.glass-card[data-beam] { position: relative; }
+
+.border-beam {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+  padding: 1.5px; /* rim kalınlığı */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+.border-beam__spin {
+  position: absolute;
+  inset: -60%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 268deg,
+    var(--accent, var(--blue)) 300deg,
+    var(--blue-2, var(--accent, var(--blue))) 332deg,
+    transparent 360deg
+  );
+  animation: border-beam-spin 5.5s linear infinite;
+  will-change: transform;
+}
+@keyframes border-beam-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .border-beam { display: none; }
+}
+.is-offscreen .border-beam__spin {
+  animation-play-state: paused;
+}
+
+/* -------------------------------------------------------------------------
    Accordion behaviour — .glass-card.accordion-card
    Başlık her zaman görünür + tıklanabilir; gövde yükseklik/opaklık
    geçişiyle açılıp kapanır. Kısa ve hafif (Madde: "1 ama çok hafif").
