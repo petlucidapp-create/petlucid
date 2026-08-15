@@ -371,6 +371,47 @@ html.dark .guide-card.is-pressed .guide-card__glow { opacity: 0.7; }
   box-shadow: var(--glass-shadow);
 }
 
+/* Placeholder — görsel yüklenemezse (onerror → is-placeholder) gösterilir.
+   mock.css'teki .mock-screenshot__placeholder ile aynı kalıp: varsayılan
+   gizli, sadece is-placeholder sınıfı eklendiğinde görünür. Bu kural
+   eksikti; placeholder her zaman DOM'da kalıp görselin üstünde/altında
+   görünüyordu, görsel başarıyla yüklense bile. */
+.showcase-carousel__placeholder {
+  display: none;
+}
+.showcase-carousel__slide.is-placeholder img {
+  display: none;
+}
+.showcase-carousel__slide.is-placeholder .showcase-carousel__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  aspect-ratio: 9 / 16;
+  padding: 20px;
+  text-align: center;
+  color: var(--ink-faint);
+  border-radius: var(--r-lg);
+  background:
+    repeating-linear-gradient(
+      45deg,
+      var(--glass-bg),
+      var(--glass-bg) 10px,
+      transparent 10px,
+      transparent 20px
+    ),
+    var(--mock-bg);
+}
+.showcase-carousel__placeholder svg { width: 26px; height: 26px; opacity: 0.5; }
+.showcase-carousel__placeholder span {
+  font-size: 10.5px;
+  font-family: var(--font-mono, monospace);
+  word-break: break-all;
+  max-width: 240px;
+  opacity: 0.7;
+}
+
 /* Coverflow'da ortadaki (dist~0) slaytın hafif ışıltısı — mock-carousel'deki
    --pl-glow ile aynı dil, kartın altında yumuşak bir accent parıltısı. */
 .showcase-carousel__slide::after {
