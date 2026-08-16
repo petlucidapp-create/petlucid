@@ -4,13 +4,19 @@
  * uygulama ekran görüntüsünü gösteren bir çerçeve üretir. Görsel dosyası
  * yoksa boş bir placeholder çerçeve gösterilir (dosya adı ipucuyla).
  *
- * Görsel dosyaları: assets/screens/<frameId>.jpg (frameId noktaları
- * korunur, örn. "index.daily_summary.jpg"). Dosya konursa otomatik çekilir,
- * kod değişikliği gerekmez.
+ * Görsel dosyaları — DİL-DUYARLI ARAMA SIRASI:
+ *   1) assets/screens/<frameId>.<mevcutDil>.<ext>   (örn. index.empty_state.de.jpg)
+ *   2) assets/screens/<frameId>.en.<ext>            (İngilizce fallback)
+ *   3) assets/screens/<frameId>.<ext>               (eski/dilsiz orijinal dosya —
+ *                                                     geriye dönük uyumluluk)
+ *   4) placeholder (hiçbiri bulunamazsa)
+ * Her aşamada EXT_CANDIDATES sırasıyla denenir (jpg, jpeg, png, webp).
+ * Dil-özel görsel eklemek için sadece dosyayı doğru adla assets/screens/
+ * içine koymak yeterli, kod değişikliği gerekmez.
  */
 (function (global) {
   const I = global.PLIcon;
-  const SCREENS_PATH = 'assets/screens/';
+  const SCREENS_PATH = '/assets/screens/';
   const EXT_CANDIDATES = ['jpg', 'jpeg', 'png', 'webp'];
 
   // Guide meta'sından (guides.json) tüm geçerli frame ID'lerini üretir:
@@ -36,10 +42,31 @@
     return ids;
   }
 
+  // Bir frame için denenecek "yol adayları" listesini üretir:
+  // önce mevcut dil, sonra İngilizce (mevcut dil zaten en değilse), sonra
+  // dilsiz orijinal — her biri için 4 uzantı. Sıra korunur.
+  function buildCandidates(frameId) {
+    const currentLang = (global.PLI18n && global.PLI18n.currentLang) ? global.PLI18n.currentLang() : null;
+    const langPrefixes = [];
+    if (currentLang) langPrefixes.push(currentLang);
+    if (currentLang !== 'en') langPrefixes.push('en');
+    langPrefixes.push(''); // dilsiz orijinal dosya adı (geriye dönük uyumluluk)
+
+    const candidates = [];
+    langPrefixes.forEach((prefix) => {
+      EXT_CANDIDATES.forEach((ext) => {
+        const base = prefix ? `${frameId}.${prefix}` : frameId;
+        candidates.push(`${SCREENS_PATH}${base}.${ext}`);
+      });
+    });
+    return candidates;
+  }
+
   // Bir frame için görsel elementi üretir. Görsel yüklenemezse (dosya henüz
-  // konmadıysa) placeholder'a otomatik geri döner.
+  // konmadıysa) sırayla diğer adayları dener, hepsi başarısızsa placeholder'a
+  // geri döner.
   function screenshotFrame(frameId) {
-    const fileBase = SCREENS_PATH + frameId;
+    const candidates = buildCandidates(frameId);
     const imgId = `shot-${frameId.replace(/\./g, '-')}`;
     return `
       <div class="mock-screenshot" id="${imgId}">
@@ -48,7 +75,7 @@
           data-frame-id="${frameId}"
           data-try-idx="0"
           onerror="window.PLMockFrames.handleImgError(this)"
-          src="${fileBase}.${EXT_CANDIDATES[0]}"
+          src="${candidates[0]}"
         />
         <div class="mock-screenshot__placeholder">
           ${I('ImageOff', { size: 26 })}
@@ -58,14 +85,16 @@
     `;
   }
 
-  // <img> yüklenemezse sırayla diğer uzantıları dener; hepsi başarısız
-  // olursa görseli gizler ve placeholder'ı gösterir.
+  // <img> yüklenemezse sırayla diğer adayları dener (dil → en → dilsiz orijinal,
+  // her biri için uzantı sırası); hepsi başarısız olursa görseli gizler ve
+  // placeholder'ı gösterir.
   function handleImgError(imgEl) {
     const frameId = imgEl.getAttribute('data-frame-id');
+    const candidates = buildCandidates(frameId);
     let idx = parseInt(imgEl.getAttribute('data-try-idx'), 10) + 1;
-    if (idx < EXT_CANDIDATES.length) {
+    if (idx < candidates.length) {
       imgEl.setAttribute('data-try-idx', String(idx));
-      imgEl.src = `${SCREENS_PATH}${frameId}.${EXT_CANDIDATES[idx]}`;
+      imgEl.src = candidates[idx];
     } else {
       imgEl.style.display = 'none';
       const wrap = imgEl.closest('.mock-screenshot');

@@ -71,7 +71,7 @@
   // üzerinden değil, doğrudan bu dosyada TR/EN + fallback ile çözülür,
   // çünkü bu sadece <img alt> için, görünür metin değil.
   // -----------------------------------------------------------------------
-  const SHOWCASE_PATH = 'assets/showcase/';
+  const SHOWCASE_PATH = '/assets/showcase/';
   const SHOWCASE_EXT_CANDIDATES = ['png', 'jpg', 'jpeg', 'webp'];
   const SHOWCASE_ITEMS = [
     { id: 'home', alt: 'Home' },
