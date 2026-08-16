@@ -528,24 +528,44 @@
   }
 
   async function loadData() {
-    const res = await fetch('data/guides.json', { cache: 'force-cache' });
+    const res = await fetch('/data/guides.json', { cache: 'force-cache' });
     if (!res.ok) throw new Error('guides.json yüklenemedi: ' + res.status);
     state.data = await res.json();
     state.ready = true;
   }
 
   function detectInitialLang() {
+    // 1) URL yolu önceliklidir (örn. /en/, /de/) — SEO için her dil ayrı URL'de yaşar.
+    const pathMatch = global.location ? location.pathname.match(/^\/([a-z]{2})(\/|$)/i) : null;
+    const fromPath = pathMatch ? pathMatch[1].toLowerCase() : null;
+    if (fromPath && state.data.meta.langs.includes(fromPath)) return fromPath;
+    // 2) Daha önce elle seçilmiş bir dil varsa (kök "/" üzerinde) onu kullan.
     const saved = global.localStorage ? localStorage.getItem(STORAGE_KEY) : null;
     if (saved && state.data.meta.langs.includes(saved)) return saved;
+    // 3) Tarayıcı dili.
     const nav = (navigator.language || 'tr').slice(0, 2).toLowerCase();
     if (state.data.meta.langs.includes(nav)) return nav;
     return DEFAULT_LANG;
   }
 
-  function setLang(lang) {
+  function setLang(lang, opts) {
     if (!state.data.meta.langs.includes(lang)) lang = DEFAULT_LANG;
-    state.lang = lang;
+    const navigate = !opts || opts.navigate !== false;
     if (global.localStorage) localStorage.setItem(STORAGE_KEY, lang);
+
+    // Kullanıcı menüden dil değiştirdiyse, URL'i de o dilin klasörüne taşı
+    // (örn. /tr/pets → /en/pets). Bu sayede URL her zaman gerçek dille eşleşir.
+    if (navigate && global.location) {
+      const current = location.pathname.match(/^\/([a-z]{2})(\/.*|$)/i);
+      const rest = current ? current[2] || '/' : location.pathname;
+      const targetPath = '/' + lang + (rest === '/' ? '/' : rest);
+      if (location.pathname !== targetPath) {
+        location.pathname = targetPath;
+        return; // sayfa yeniden yüklenecek, aşağısını çalıştırmaya gerek yok
+      }
+    }
+
+    state.lang = lang;
     const isRTL = state.data.meta.rtlLangs.includes(lang);
     document.documentElement.lang = lang;
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';

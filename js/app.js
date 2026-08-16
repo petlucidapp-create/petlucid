@@ -320,7 +320,7 @@
     }
 
     const initialLang = window.PLI18n.detectInitialLang();
-    window.PLI18n.setLang(initialLang);
+    window.PLI18n.setLang(initialLang, { navigate: false });
 
     initTheme();
     updateLangTriggerLabel();
