@@ -1,24 +1,650 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  petlucidapp.com — sitemap.xml
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  NOT: Site şu an tek bir HTML sayfası (index.html) ve içerik JavaScript ile
-  DOM'a yazılıyor (kılavuz kartları, adımlar, 21 dil). Bu yüzden sitemap'te
-  şimdilik sadece TEK url var — gerçekte var olmayan sayfaları (örn. /en/,
-  /guide/pets vb.) sitemap'e eklemek Google Search Console'da "bulunamadı"
-  hatalarına yol açar.
-
-  Bir önceki SEO değerlendirmesinde önerdiğim gibi, her kılavuz/dil için ayrı
-  bir statik sayfa/URL oluşturulduğunda, bu dosyaya o URL'ler <url> bloğu
-  olarak eklenmeli ve dil versiyonları için <xhtml:link rel="alternate"
-  hreflang="..."> etiketleri kullanılmalı. O yapı kurulana kadar hreflang
-  eklemek yanıltıcı olur çünkü tüm diller şu an aynı URL'yi paylaşıyor.
--->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://petlucidapp.com/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
   </url>
+
+  <url>
+    <loc>https://petlucidapp.com/en/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/tr/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/de/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/fr/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/es/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/it/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/pt/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/nl/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/ru/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/ja/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/ko/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/zh/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/ar/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/pl/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/sv/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/no/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/da/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/fi/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/cs/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/hu/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/ro/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://petlucidapp.com/en/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://petlucidapp.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://petlucidapp.com/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://petlucidapp.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://petlucidapp.com/es/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://petlucidapp.com/it/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://petlucidapp.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://petlucidapp.com/nl/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://petlucidapp.com/ru/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://petlucidapp.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://petlucidapp.com/ko/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://petlucidapp.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://petlucidapp.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://petlucidapp.com/pl/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://petlucidapp.com/sv/" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://petlucidapp.com/no/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://petlucidapp.com/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://petlucidapp.com/fi/" />
+    <xhtml:link rel="alternate" hreflang="cs" href="https://petlucidapp.com/cs/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://petlucidapp.com/hu/" />
+    <xhtml:link rel="alternate" hreflang="ro" href="https://petlucidapp.com/ro/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://petlucidapp.com/" />
+  </url>
+
+  <url>
+    <loc>https://petlucidapp.com/privacy-policy.html</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>
