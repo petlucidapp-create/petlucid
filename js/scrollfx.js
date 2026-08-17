@@ -144,6 +144,29 @@
   const COVERFLOW_SLIDE_SELECTOR = '.mock-carousel__slide, .showcase-carousel__slide';
   const COVERFLOW_TRACK_SELECTOR = '.mock-carousel__track, .showcase-carousel__track';
 
+  // Track'in sol/sağ padding'ini, İLK ve SON slaydın da scroll-snap-align:
+  // center ile tam merkeze kayabilmesi için gereken değere ayarlar:
+  // (clientWidth - slideWidth) / 2. CSS'teki sabit/yüzdesel padding bunu
+  // güvenilir şekilde veremiyor (bkz. carousel.css yorumu) çünkü %100,
+  // flex-basis çözümlenmeden önceki genişliğe göre hesaplanıyor ve slaydın
+  // gerçek genişliğiyle uyuşmuyor — sonuçta uç slaytlar asla tam merkeze
+  // gelemiyor (--pl-dist hiç ~0 olmuyor) ve dokunmatikte "seçilemiyor" gibi
+  // görünüyor. Burada gerçek ölçülmüş genişliklerle hesaplanıp inline
+  // stil olarak yazılıyor; resize ve dil değişiminde tekrar çağrılır.
+  function syncCoverflowEdgePadding(track) {
+    const slide = track.querySelector(COVERFLOW_SLIDE_SELECTOR);
+    if (!slide) return;
+    // getBoundingClientRect() coverflow transform'undan (scale) etkilenir;
+    // gerçek "kutu" genişliği için offsetWidth kullanılır (transform'suz).
+    const slideWidth = slide.offsetWidth;
+    const trackWidth = track.clientWidth;
+    const edge = Math.max((trackWidth - slideWidth) / 2, 0);
+    track.style.paddingLeft = `${edge}px`;
+    track.style.paddingRight = `${edge}px`;
+    track.style.scrollPaddingLeft = `${edge}px`;
+    track.style.scrollPaddingRight = `${edge}px`;
+  }
+
   function updateCoverflowTrack(track) {
     const trackRect = track.getBoundingClientRect();
     const trackCenter = trackRect.left + trackRect.width / 2;
@@ -164,6 +187,7 @@
   function registerCoverflowTrack(track) {
     if (!track || coverflowTracks.has(track)) return;
     coverflowTracks.add(track);
+    syncCoverflowEdgePadding(track);
     let localTicking = false;
     const onTrackScroll = () => {
       if (localTicking) return;
@@ -182,11 +206,18 @@
   }
 
   function refreshCoverflow() {
-    // Dil değişimi / yeni guide section render sonrası yeni track'leri bağlar.
+    // Dil değişimi / yeni guide section render sonrası yeni track'leri bağlar
+    // (yeni track'ler için padding de registerCoverflowTrack içinde
+    // hesaplanır). Zaten bilinen track'lerin padding'i de burada tazelenir —
+    // dil değişimi slayt içeriğinin (dolayısıyla mümkün genişliğinin)
+    // değişmesine yol açabilir.
     initCoverflow();
+    coverflowTracks.forEach(syncCoverflowEdgePadding);
+    coverflowTracks.forEach(updateCoverflowTrack);
   }
 
   window.addEventListener('resize', () => {
+    coverflowTracks.forEach(syncCoverflowEdgePadding);
     coverflowTracks.forEach(updateCoverflowTrack);
   });
 
