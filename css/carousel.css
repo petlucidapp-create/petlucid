@@ -327,9 +327,21 @@ html.dark .guide-card.is-pressed .guide-card__glow { opacity: 0.7; }
   gap: 20px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scroll-padding: 0 12px;
+  /* Sol/sağ yatay boşluk artık burada sabit bir değer DEĞİL — JS tarafından
+     (js/scrollfx.js → syncCoverflowEdgePadding) track'in gerçek clientWidth'i
+     ve slaydın gerçek genişliğine göre inline stil olarak hesaplanıp
+     yazılıyor: padding-left/right = (clientWidth - slideWidth) / 2. Böylece
+     scroll-snap-align:center ile ilk VE son slayt da tam merkeze
+     kayabiliyor. CSS calc((100% - basis)/2) yaklaşımı burada YANLIŞ sonuç
+     veriyordu çünkü %100, flex-basis hesaplamasından ÖNCEKİ mevcut
+     genişliğe göre çözülüyor ve slaydın gerçek (transform uygulanmamış)
+     genişliğiyle örtüşmüyordu — sonuçta ilk/son slayt asla dist~0'a
+     inemiyor, kenarda küçük/soluk kalıp dokunmatikte "seçilemiyor" gibi
+     görünüyordu. JS ile ölçüp yazmak bu belirsizliği ortadan kaldırır.
+     Sayfa henüz JS çalışmadan render olduğunda makul bir başlangıç değeri
+     olması için 12px fallback burada duruyor; ilk boya sonrası JS hemen
+     üzerine yazıyor. */
   padding: 8px 12px 28px;
-  margin: 0 -12px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
@@ -339,6 +351,7 @@ html.dark .guide-card.is-pressed .guide-card__glow { opacity: 0.7; }
   position: relative;
   flex: 0 0 82%;
   scroll-snap-align: center;
+  scroll-snap-stop: always;
   transform-origin: center center;
   --pl-dist: 0;
   --pl-z: 10;
