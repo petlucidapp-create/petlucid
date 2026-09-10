@@ -121,6 +121,17 @@ html.dark .glass-sheen::before {
 .btn-store .store-text small { font-size: 10.5px; font-weight: 500; letter-spacing: 0.02em; opacity: 0.85; }
 .btn-store .store-text strong { font-size: 15px; font-weight: 650; letter-spacing: -0.01em; }
 
+/* Live store badge — real link, full color, no disabled treatment */
+.btn-store--live {
+  cursor: pointer;
+  user-select: auto;
+  opacity: 1;
+  filter: grayscale(0);
+  color: var(--ink);
+}
+.btn-store--live .store-icon { opacity: 1; }
+.btn-store--live:hover { opacity: 0.85; }
+
 /* -------------------------------------------------------------------------
    Chips / pills
    ------------------------------------------------------------------------- */

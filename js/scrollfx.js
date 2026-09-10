@@ -168,13 +168,21 @@
   }
 
   function updateCoverflowTrack(track) {
-    const trackRect = track.getBoundingClientRect();
-    const trackCenter = trackRect.left + trackRect.width / 2;
+    // NOT: getBoundingClientRect() transform:scale() UYGULANMIŞ boyutu/konumu
+    // döndürür. Bu fonksiyon zaten --pl-dist'e göre slaytları scale ettiği
+    // için rect tabanlı ölçüm besleme döngüsüne yol açıyordu: bir önceki
+    // frame'de küçültülen slaydın rect'i küçük ölçülüyor, bu da dist'i
+    // büyütüp slaydı bir sonraki frame'de DAHA DA küçültüyordu — her scroll
+    // sonrası mock ekranların kademeli küçülmesinin sebebi buydu. Bunun
+    // yerine transform'dan etkilenmeyen layout değerleri (offsetLeft/
+    // offsetWidth, track'in scrollLeft'i ile birlikte) kullanılır.
+    const trackScrollLeft = track.scrollLeft;
+    const trackCenter = trackScrollLeft + track.clientWidth / 2;
     const slides = track.querySelectorAll(COVERFLOW_SLIDE_SELECTOR);
     slides.forEach((slide) => {
-      const r = slide.getBoundingClientRect();
-      const slideCenter = r.left + r.width / 2;
-      const dist = Math.abs(slideCenter - trackCenter) / (r.width || 1);
+      const slideWidth = slide.offsetWidth || 1;
+      const slideCenter = slide.offsetLeft + slideWidth / 2;
+      const dist = Math.abs(slideCenter - trackCenter) / slideWidth;
       slide.style.setProperty('--pl-dist', String(dist));
       slide.style.setProperty('--pl-z', String(dist < 0.15 ? 10 : 5));
       // Coverflow'da öne gelen (ortadaki, dist~0) slayt parlar; yanlara

@@ -573,7 +573,8 @@
     document.getElementById('showcaseCarouselNext').setAttribute('aria-label', ui('ariaNext'));
     document.getElementById('footerTag').textContent = ui('footerTag');
     document.getElementById('footerCopyright').textContent = ui('footerCopyright');
-    document.querySelectorAll('.btn-store .store-text small').forEach(s => s.textContent = ui('storeSoon'));
+    document.querySelectorAll('.btn-store[data-store="apple"] .store-text small').forEach(s => s.textContent = ui('storeSoon'));
+    document.querySelectorAll('.btn-store[data-store="google"] .store-text small').forEach(s => s.textContent = ui('storeGetItOn'));
   }
 
   function renderAll() {

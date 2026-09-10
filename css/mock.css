@@ -348,6 +348,8 @@ html.dark .mock-glow--disabled-original-rules::after {
 }
 
 .mock-carousel__track {
+  position: relative; /* slide.offsetLeft'in bu track'e göre ölçülmesi için
+                          (js/scrollfx.js → updateCoverflowTrack) */
   display: flex;
   align-items: center; /* düzeltme: slaytlar farklı scale değerlerinde bile
                             her zaman dikey merkeze hizalı kalır, biri

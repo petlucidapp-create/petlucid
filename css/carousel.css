@@ -322,6 +322,8 @@ html.dark .guide-card.is-pressed .guide-card__glow { opacity: 0.7; }
    kompozisyonunu taşıyor, kart sadece hafif bir cam gölgesiyle çevreler.
    ------------------------------------------------------------------------- */
 .showcase-carousel__track {
+  position: relative; /* slide.offsetLeft'in bu track'e göre ölçülmesi için
+                          (js/scrollfx.js → updateCoverflowTrack) */
   display: flex;
   align-items: center;
   gap: 20px;
