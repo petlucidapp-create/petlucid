@@ -133,6 +133,51 @@ html.dark .glass-sheen::before {
 .btn-store--live:hover { opacity: 0.85; }
 
 /* -------------------------------------------------------------------------
+   Google Play — sabit (fixed) rozet
+   Hero grubundan bağımsız: her zaman ekranda sabit kalır, scroll'dan
+   etkilenmez. Mobilde sağ altta küçük bir badge; masaüstünde aynı konumda
+   ama 2-3x daha büyük bir buton olarak görünür.
+   ------------------------------------------------------------------------- */
+.btn-store--fixed {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 60;
+  box-shadow: var(--glass-shadow);
+  animation: storeFixedIn var(--dur-med) var(--ease-out) both;
+  animation-delay: 400ms;
+}
+.btn-store--fixed:hover { transform: translateY(-2px); }
+.btn-store--fixed:active { transform: translateY(0) scale(0.97); }
+.btn-store--fixed,
+.btn-store--fixed:hover,
+.btn-store--fixed:active {
+  transition: transform var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+}
+
+@keyframes storeFixedIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.94); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (min-width: 900px) {
+  .btn-store--fixed {
+    right: 32px;
+    bottom: 32px;
+    padding: 24px 40px;
+    gap: 18px;
+    border-radius: var(--r-md);
+  }
+  .btn-store--fixed .store-icon { width: 48px; height: 48px; }
+  .btn-store--fixed .store-text small { font-size: 15px; }
+  .btn-store--fixed .store-text strong { font-size: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-store--fixed { animation: none; }
+}
+
+/* -------------------------------------------------------------------------
    Chips / pills
    ------------------------------------------------------------------------- */
 .chip {
