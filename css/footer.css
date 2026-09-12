@@ -79,9 +79,11 @@
 }
 
 /* Back to top */
+/* Sabit Google Play rozetiyle (.btn-store--fixed, sağ altta) çakışmaması için
+   bu buton rozetin üstünde, aralarında boşluk kalacak şekilde konumlanır. */
 .back-to-top {
   position: fixed;
-  bottom: 28px;
+  bottom: calc(28px + 76px);
   right: 28px;
   z-index: 90;
   width: 48px; height: 48px;
@@ -99,5 +101,11 @@
 .back-to-top svg { width: 18px; height: 18px; }
 
 @media (max-width: 640px) {
-  .back-to-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
+  .back-to-top { bottom: calc(20px + 68px); right: 20px; width: 44px; height: 44px; }
+}
+
+@media (min-width: 900px) {
+  /* Masaüstünde .btn-store--fixed çok daha büyük (padding 24px 40px), o yüzden
+     back-to-top'u daha fazla yukarı almak gerekiyor. */
+  .back-to-top { bottom: calc(32px + 96px); right: 32px; }
 }
