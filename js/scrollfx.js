@@ -224,7 +224,21 @@
     coverflowTracks.forEach(updateCoverflowTrack);
   }
 
+  // NOT: Mobil tarayıcılarda dikey scroll sırasında adres çubuğu gizlenip
+  // göründükçe viewport YÜKSEKLİĞİ değişir ve bu da bir 'resize' event'i
+  // tetikler — GENİŞLİK aynı kalsa bile. Bu handler eskiden her resize'da
+  // (dolayısıyla her scroll hareketinde) padding'i yeniden hesaplayıp
+  // yazıyordu; padding yazımı slaytların layout genişliğini/scroll
+  // pozisyonunu ufak da olsa etkileyip --pl-dist'i bozuyor, bu da coverflow
+  // görsellerinin sayfa yukarı/aşağı kaydırıldıkça (yatay carousel hiç
+  // dokunulmamış olsa bile) küçülüp büyümesine yol açıyordu. Çözüm: yalnızca
+  // GENİŞLİK gerçekten değiştiğinde (döndürme, pencere yeniden boyutlandırma,
+  // dil değişimiyle içerik genişliği değişimi) yeniden hesapla; yükseklik-only
+  // değişimleri (adres çubuğu) yok say.
+  let lastCoverflowWidth = window.innerWidth;
   window.addEventListener('resize', () => {
+    if (window.innerWidth === lastCoverflowWidth) return;
+    lastCoverflowWidth = window.innerWidth;
     coverflowTracks.forEach(syncCoverflowEdgePadding);
     coverflowTracks.forEach(updateCoverflowTrack);
   });
@@ -298,7 +312,16 @@
     global.__plRevealIO = setupRevealObserver();
     setupBeamObserver();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    // Mobilde adres çubuğu gizlenip göründükçe yalnızca viewport YÜKSEKLİĞİ
+    // değişir ve 'resize' tetiklenir; bu durumda da yeniden hesaplamak
+    // gereksiz ve (coverflow ile aynı sebepten) görsel titreşime yol açabilir.
+    // Yalnızca genişlik değiştiğinde tam yeniden hesapla.
+    let lastWidth = window.innerWidth;
+    window.addEventListener('resize', () => {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      onScroll();
+    });
     onScroll();
     initCoverflow();
   }
